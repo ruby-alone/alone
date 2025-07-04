@@ -1,0 +1,35 @@
+<%= header_section %>
+  <title>稼働ログ</title>
+  <script src="/js/alone.js"></script>
+
+<%= body_section %>
+  <div class="al-page-header">稼働ログ</div>
+
+  <p>稼働ログ ( <%=h AL_LOG_DEV %> ) が表示されています。<br>
+    このログへは、Aloneが検出したプログラムエラーのほか、Alone.log()メソッドで任意に追記することもできます。
+  </p>
+  <iframe id="log_frame" src="<%=h Alone.make_uri(action:"view_log") %>"
+	  style="width: 100%; height: 400px;">
+  </iframe>
+
+  <div style="display: inline-block; padding: 10px; border: 1px solid black;">
+    <p>Alone.log()を使って、稼働ログに追記します。</p>
+    <input type="text" id="log_message" style="width: 400px;"><br>
+    <input type="button" onclick="append_log()" value="送信" style="float: right;">
+  </div>
+
+<script>
+function append_log()
+{
+  var text = document.getElementById("log_message").value;
+  if( text == "" ) return;
+
+  Alone.ajax( Alone.make_uri({action: "append_log", text: text}), {
+    success: function() {
+      document.getElementById("log_frame").contentWindow.location.reload();
+    },
+  });
+}
+
+</script>
+<%= footer_section %>

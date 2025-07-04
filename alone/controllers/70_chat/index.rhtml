@@ -1,0 +1,37 @@
+<%#
+   alone : application framework for small embedded systems.
+                 Copyright (c) 2009-2013 Inas Co Ltd. All Rights Reserved.
+                 Copyright (c) 2010-2013 FAR END Technologies Corporation.
+                 All Rights Reserved.
+
+   This file is destributed under BSD License. Please read the COPYRIGHT file.
+
+   sample program "chat" / html template
+%>
+<%= header_section %>
+<title>チャット</title>
+
+<style>
+#pane_listen {
+    width: 650px;
+    height: 300px;
+    border: 1px solid black;
+    overflow: auto;
+}
+#txt_say {
+    width: 600px;
+    height: 2em;
+}
+</style>
+<script src="<%=s "js/alone.js" %>"></script>
+<script src="<%=s "js/sample_chat.js" %>"></script>
+
+<%= body_section %>
+  <h1>チャット</h1>
+  <p>複数のブラウザで互いに送信した内容がリアルタイムに表示されます。</p>
+  <div id="pane_listen"></div>
+  お名前　<input type="text" id="txt_myname" value=""><br>
+  <textarea id="txt_say"></textarea>
+  <input type="button" id="btn_say" value="SAY">
+
+<%= footer_section %>

@@ -1,0 +1,60 @@
+<%= header_section %>
+  <title>折れ線グラフサンプル</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+<%= body_section %>
+
+<div class="al-page-header">折れ線グラフサンプル</div>
+
+<h2>1. 折れ線グラフ</h2>
+<img src="<%= Alone.make_uri(action:'line_sample_01') %>">
+<details>
+  <summary>ソースコード</summary>
+  <pre><code><%=h @src_line_sample_01 %></code></pre>
+</details>
+
+<h2>2. 折れ線２本 with X軸ラベル</h2>
+<img src="<%= Alone.make_uri(action:'line_sample_02') %>">
+<details>
+  <summary>ソースコード</summary>
+  <pre><code><%=h @src_line_sample_02 %></code></pre>
+</details>
+
+<h2>3. ラベル類の付与</h2>
+<img src="<%= Alone.make_uri(action:'line_sample_03') %>">
+<details>
+  <summary>ソースコード</summary>
+  <pre><code><%=h @src_line_sample_03 %></code></pre>
+</details>
+
+<h2>4. グリッド線のコントロール</h2>
+<img src="<%= Alone.make_uri(action:'line_sample_04') %>">
+<details>
+  <summary>ソースコード</summary>
+  <pre><code><%=h @src_line_sample_04 %></code></pre>
+</details>
+
+<h2>5. 第２Y軸の追加</h2>
+<img src="<%= Alone.make_uri(action:'line_sample_05') %>">
+<details>
+  <summary>ソースコード</summary>
+  <pre><code><%=h @src_line_sample_05 %></code></pre>
+</details>
+
+<h2>6. スケール（軸）を指定（最大、最小、インターバル、上下反転）</h2>
+<img src="<%= Alone.make_uri(action:'line_sample_06') %>">
+<details>
+  <summary>ソースコード</summary>
+  <pre><code><%=h @src_line_sample_06 %></code></pre>
+</details>
+
+<h2>7. プロット線とマーカーを指定</h2>
+<img src="<%= Alone.make_uri(action:'line_sample_07') %>">
+<details>
+  <summary>ソースコード</summary>
+  <pre><code><%=h @src_line_sample_07 %></code></pre>
+</details>
+
+<%= footer_section %>

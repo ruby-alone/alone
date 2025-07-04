@@ -1,0 +1,17 @@
+<%= header_section %>
+  <title>グラフサンプル</title>
+
+<%= body_section %>
+
+<div class="al-page-header">グラフサンプル</div>
+<ul>
+  <li><a href="<%=h make_uri(:action=>'line_plot') %>">折れ線グラフ</a>
+  <li><a href="<%=h make_uri(:action=>'bar_plot') %>">棒グラフ</a>
+  <li><a href="<%=h make_uri(:action=>'pie_chart') %>">円グラフ</a>
+  <li><a href="<%=h make_uri(:action=>'xy_plot') %>">XYグラフ</a>
+  <li><a href="<%=h make_uri(:action=>'log_plot') %>">対数グラフ</a>
+  <li><a href="<%=h make_uri(:action=>'scatter_plot') %>">散布図</a>
+</ul>
+
+
+<%= footer_section %>

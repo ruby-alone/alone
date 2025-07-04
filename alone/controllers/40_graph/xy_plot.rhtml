@@ -1,0 +1,27 @@
+<%= header_section %>
+  <title>XYグラフサンプル</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+<%= body_section %>
+
+<div class="al-page-header">XYグラフサンプル</div>
+
+<h2>1. XYグラフ</h2>
+<img src="<%= Alone.make_uri(action:'xy_sample_01') %>">
+<details>
+  <summary>ソースコード</summary>
+  <pre><code><%=h @src_xy_sample_01 %></code></pre>
+</details>
+
+
+<h2>2. 海水中の溶存酸素量</h2>
+<img src="<%= Alone.make_uri(action:'xy_sample_02') %>">
+<details>
+  <summary>ソースコード</summary>
+  <pre><code><%=h @src_xy_sample_02 %></code></pre>
+</details>
+
+
+<%= footer_section %>

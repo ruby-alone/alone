@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/al_style.css">
+  <title>フォームサンプル3</title>
+
+</head>
+<body>
+  <div class="al-page-header">フォームサンプル3</div>
+
+  <%= @form.get_messages_by_html() %>
+
+  <form method="<%=h @form.method %>" action="<%=h @form.action %>" style="width: 20em;">
+    名前：<input name="text1" type="text" value="<%=h @form-:text1 %>"><br>
+    性別：<label><input name="radio1" type="radio" value="r1" <%= @form.checked( :radio1, "r1" ) %> >男性</label>
+          <label><input name="radio1" type="radio" value="r2" <%= @form.checked( :radio1, "r2" ) %> >女性</label>
+          <label><input name="radio1" type="radio" value="r3" <%= @form.checked( :radio1, "r3" ) %> >不明</label><br>
+    趣味：<label><input name="check1" type="checkbox" value="c1" <%= @form.checked( :check1, "c1" ) %> >音楽</label>
+          <label><input name="check1" type="checkbox" value="c2" <%= @form.checked( :check1, "c2" ) %> >スポーツ</label>
+          <label><input name="check1" type="checkbox" value="c3" <%= @form.checked( :check1, "c3" ) %> >読書</label><br>
+	  <input name="submit1" type="submit" value="決定" style="float: right;">
+  </form>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/al_style.css">
+  <title>フォームサンプル3</title>
+
+</head>
+<body>
+  <div class="al-page-header">フォームサンプル3 / 入力値確認</div>
+
+  <table class="al-sheet-table">
+    <tr class="text1">
+      <td class="al-sheet-label">名前
+      <td class="al-sheet-value"><%=h @form[:text1] %>
+    </tr>
+
+    <% tbl_r = { :r1=>"男性", :r2=>"女性", :r3=>"不明" } %>
+    <tr class="radio1">
+      <td class="al-sheet-label">性別
+      <td class="al-sheet-value"><%=h tbl_r[ @form[:radio1].to_sym ] %>
+    </tr>
+
+    <% tbl_c = { :c1=>"音楽", :c2=>"スポーツ", :c3=>"読書" } %>
+    <tr class="check1">
+      <td class="al-sheet-label">趣味
+      <td class="al-sheet-value"><% @form[:check1].each do |c| %><%=h tbl_c[c.to_sym] %> <% end %>
+    </tr>
+  </table>
+
+  <p>よろしいですか？</p>
+  <a href="<%=h Alone::make_uri( :action=>'cancel' ) %>">いいえ</a>
+  <a href="<%=h Alone::make_uri( :action=>'commit' ) %>">はい</a>
+
+</body>
+</html>

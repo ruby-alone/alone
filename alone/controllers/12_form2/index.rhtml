@@ -1,0 +1,16 @@
+<%= header_section %>
+  <title>フォームサンプル2</title>
+
+<%= body_section %>
+  <div class="al-page-header">フォームサンプル2</div>
+
+  <%= @form.get_messages_by_html() %>
+
+  <form method="<%=h @form.method %>" action="<%=h @form.action %>" style="width: 20em;">
+    名前：<%= @form.make_tag( :text1 ) %><br>
+    性別：<%= @form.make_tag( :radio1 ) %><br>
+    趣味：<%= @form.make_tag( :check1 ) %><br>
+    <%= @form.make_tag( :submit1 ) %>
+  </form>
+
+<%= footer_section %>

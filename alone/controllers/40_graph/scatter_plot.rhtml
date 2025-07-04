@@ -1,0 +1,25 @@
+<%= header_section %>
+  <title>散布図サンプル</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+<%= body_section %>
+
+<div class="al-page-header">散布図</div>
+
+<h2>1. 散布図</h2>
+<img src="<%=h Alone::make_uri(:action => 'scatter_sample_01') %>">
+<details>
+  <summary>ソースコード</summary>
+  <pre><code><%=h @src_scatter_sample_01 %></code></pre>
+</details>
+
+<h2>2. バブルチャートにアレンジ</h2>
+<img src="<%=h Alone::make_uri(:action => 'scatter_sample_02') %>">
+<details>
+  <summary>ソースコード</summary>
+  <pre><code><%=h @src_scatter_sample_02 %></code></pre>
+</details>
+
+<%= footer_section %>

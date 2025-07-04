@@ -1,0 +1,32 @@
+<%= header_section %>
+  <title>円グラフサンプル</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+<%= body_section %>
+
+<div class="al-page-header">円グラフサンプル</div>
+
+<h2>1. シンプル</h2>
+<img src="<%=h Alone::make_uri(:action => 'pie_sample_01') %>">
+<details>
+  <summary>ソースコード</summary>
+  <pre><code><%=h @src_pie_sample_01 %></code></pre>
+</details>
+
+<h2>2. セパレート</h2>
+<img src="<%= Alone::make_uri(:action => 'pie_sample_02') %>">
+<details>
+  <summary>ソースコード</summary>
+  <pre><code><%=h @src_pie_sample_02 %></code></pre>
+</details>
+
+<h2>3. JavaScriptイベント (グラフをクリックしてください）</h2>
+<object width="320" height="240" type="image/svg+xml" data="<%=h Alone::make_uri(:action=>'pie_sample_03') %>"></object>
+<details>
+  <summary>ソースコード</summary>
+  <pre><code><%=h @src_pie_sample_03 %></code></pre>
+</details>
+
+<%= footer_section %>

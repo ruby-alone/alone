@@ -1,0 +1,47 @@
+<%= header_section %>
+  <title>対数グラフサンプル</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+<%= body_section %>
+
+<div class="al-page-header">対数グラフサンプル</div>
+
+<h2>1. 片対数グラフ</h2>
+<img src="<%=h make_uri(action:'log_sample_01') %>">
+<details>
+  <summary>ソースコード</summary>
+  <pre><code><%=h @src_log_sample_01 %></code></pre>
+</details>
+
+<h2>2. 片対数グラフ 軸目盛の指定 異常値の自動排除</h2>
+<img src="<%=h make_uri(action:'log_sample_02') %>">
+<details>
+  <summary>ソースコード</summary>
+  <pre><code><%=h @src_log_sample_02 %></code></pre>
+</details>
+
+<h2>3. 片対数グラフ Y2軸を対数にする</h2>
+<img src="<%=h make_uri(action:'log_sample_03') %>">
+<details>
+  <summary>ソースコード</summary>
+  <pre><code><%=h @src_log_sample_03 %></code></pre>
+</details>
+
+<h2>4. 両対数グラフ</h2>
+<img src="<%=h make_uri(action:'log_sample_04') %>">
+<details>
+  <summary>ソースコード</summary>
+  <pre><code><%=h @src_log_sample_04 %></code></pre>
+</details>
+
+<h2>5. 積層セラミックコンデンサ周波数特性</h2>
+<img src="<%=h make_uri(action:'log_sample_05') %>">
+<details>
+  <summary>ソースコード</summary>
+  <pre><code><%=h @src_log_sample_05 %></code></pre>
+</details>
+
+
+<%= footer_section %>
