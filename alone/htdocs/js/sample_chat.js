@@ -1,10 +1,10 @@
 /*
- * alone : application framework for small embedded systems.
+ * alone : application framework for embedded systems.
  *               Copyright (c) 2009-2013 Inas Co Ltd. All Rights Reserved.
  *               Copyright (c) 2010-2013 FAR END Technologies Corporation.
  *               All Rights Reserved.
  *
- * This file is destributed under BSD License. Please read the COPYRIGHT file.
+ * This file is destributed under BSD License. Please read the LICENSE file.
  *
  * sample program "chat" / control script.
  */

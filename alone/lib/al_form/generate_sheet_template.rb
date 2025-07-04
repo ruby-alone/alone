@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
-# alone : application framework for small embedded systems.
+# alone : application framework for embedded systems.
 #               Copyright (c) 2009-2010 Inas Co Ltd. All Rights Reserved.
 #
-# This file is destributed under BSD License. Please read the COPYRIGHT file.
+# This file is destributed under BSD License. Please read the LICENSE file.
 #
 # フォームマネージャ 簡易内容表示テンプレートの生成
 

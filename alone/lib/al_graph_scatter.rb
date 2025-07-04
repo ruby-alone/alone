@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-# alone : application framework for small embedded systems.
+# alone : application framework for embedded systems.
 #          Copyright (c) 2018-2021 Hirohito Higashi All Rights Reserved.
 #
-# This file is destributed under BSD License. Please read the COPYRIGHT file.
+# This file is destributed under BSD License. Please read the LICENSE file.
 #
 # 散布図クラスを定義
 #
