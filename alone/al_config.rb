@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
-# -*- coding: utf-8 -*-
+#
 # alone : application framework for embedded systems.
-#               Copyright (c) 2009-2010 Inas Co Ltd. All Rights Reserved.
 #
 # This file is destributed under BSD License. Please read the LICENSE file.
 #
@@ -9,7 +8,7 @@
 # 必要に応じて書き換えること。
 
 # Aloneライブラリのサーバー上での設置パス
-AL_BASEDIR = File.join( File.dirname( __FILE__ ), "lib" )
+AL_BASEDIR = "#{File.dirname(__FILE__)}/lib"
 # テンポラリファイル設置パス
 AL_TEMPDIR = "/tmp/"
 # 使用キャラクタセット（現在UTF-8固定）
@@ -21,8 +20,9 @@ AL_ERROR_HANDLER = "handle_error_display"
 #AL_URI_STATIC = "~mine/prog1"
 AL_URI_STATIC = ""
 
-
-# ログ
+#
+# Log
+#
 #  パラメータはLoggger::new メソッドに準ずる。
 #  ログを出力したくない場合はコメントアウトする。
 AL_LOG_DEV = "/tmp/al_cgi.log"
@@ -30,20 +30,22 @@ AL_LOG_AGE = 3
 AL_LOG_SIZE = 1048576
 
 
-## for controller
-
+#
+# Controller
+#
 # アプリケーションを導入したディレクトリ絶対パス
-AL_CTRL_DIR = File.join( File.dirname( __FILE__ ), "controllers" )
+AL_CTRL_DIR = "#{File.dirname(__FILE__)}/controllers"
 
-
-## for form manager
-
+#
+# Form Manager
+#
 # 最大リクエストサイズ (bytes)
 AL_FORM_MAX_CONTENT_LENGTH = 8000000
 
 
-## for session manager.
-
+#
+# Session Manager
+#
 # セッションをファイルに保存する場合の場所
 AL_SESS_DIR = AL_TEMPDIR
 
@@ -51,14 +53,16 @@ AL_SESS_DIR = AL_TEMPDIR
 AL_SESS_TIMEOUT = 28800
 
 
-## for login manager.
-
+#
+# Login Manager
+#
 # ログインスクリプトのURI
 AL_LOGIN_URI = "?ctrl=login"
 
 
-## for template manager.
-
+#
+# Template Manager
+#
 # テンプレート保存場所へのパス。ドットはコントローラと同じディレクトリ。
 AL_TEMPLATE_DIR = '.'
 
