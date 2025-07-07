@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
-# -*- coding: utf-8 -*-
+#
 # alone : application framework for embedded systems.
-#               Copyright (c) 2009-2010 Inas Co Ltd. All Rights Reserved.
 #
 # This file is destributed under BSD License. Please read the LICENSE file.
 #
@@ -486,4 +485,14 @@ class Alone
     Encoding.default_external = AL_CHARSET
   end
   _start()
+end
+
+
+##
+# fallback function for gettext
+#
+if !defined?(GetText)
+  def _(s)
+    s
+  end
 end
