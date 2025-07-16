@@ -495,4 +495,7 @@ if !defined?(GetText)
   def _(s)
     s
   end
+  def p_(msgctxt, s)
+    s
+  end
 end
