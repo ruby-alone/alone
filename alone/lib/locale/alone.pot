@@ -1,0 +1,109 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-07-18 15:14+0900\n"
+"PO-Revision-Date: 2025-07-18 15:14+0900\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: ../al_form.rb:359
+msgctxt "al"
+msgid "Size is too large."
+msgstr ""
+
+#: ../al_form.rb:789 ../al_form.rb:1416 ../al_form.rb:1461 ../al_form.rb:1538
+msgctxt "al"
+msgid "%s is required."
+msgstr ""
+
+#: ../al_form.rb:796
+msgctxt "al"
+msgid "%1$s must be entered within %2$d characters."
+msgstr ""
+
+#: ../al_form.rb:800
+msgctxt "al"
+msgid "%1$s must be at least %2$d characters long."
+msgstr ""
+
+#: ../al_form.rb:805 ../al_form.rb:1469 ../al_form.rb:1548
+msgctxt "al"
+msgid "Please enter %s correctly."
+msgstr ""
+
+#: ../al_form.rb:976 ../al_form.rb:1103
+msgctxt "al"
+msgid "Please select %s."
+msgstr ""
+
+#: ../al_form.rb:983 ../al_form.rb:1109
+msgctxt "al"
+msgid "The input for %s is not a valid value."
+msgstr ""
+
+#: ../al_form.rb:1094
+msgctxt "al"
+msgid "Please select a maximum of %2$d for %1$s."
+msgstr ""
+
+#: ../al_form.rb:1098
+msgctxt "al"
+msgid "Please select a minimum of %2$d for %1$s."
+msgstr ""
+
+#: ../al_form.rb:1424
+msgctxt "al"
+msgid "Please enter %s as an integer."
+msgstr ""
+
+#: ../al_form.rb:1430
+msgctxt "al"
+msgid "%1$s must be %2$d or less."
+msgstr ""
+
+#: ../al_form.rb:1434
+msgctxt "al"
+msgid "%1$s must be %2$d or more."
+msgstr ""
+
+#: ../al_form.rb:1475
+msgctxt "al"
+msgid "%1$s must be %2$f or less."
+msgstr ""
+
+#: ../al_form.rb:1479
+msgctxt "al"
+msgid "%1$s must be %2$f or more."
+msgstr ""
+
+#: ../al_form.rb:1553
+msgctxt "al"
+msgid "%1$s must be no more than %2$s."
+msgstr ""
+
+#: ../al_form.rb:1557
+msgctxt "al"
+msgid "%1$s must be at least %2$s."
+msgstr ""
+
+#: ../al_form/input_file.rb:52
+msgctxt "al"
+msgid "Please specify %s."
+msgstr ""
+
+#: ../al_login_main.rb:97
+msgctxt "al"
+msgid "Invalid User ID or password."
+msgstr ""

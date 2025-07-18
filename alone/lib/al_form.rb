@@ -356,7 +356,7 @@ class AlForm
     # リクエストが正当なものか確認
     #
     if @@flag_request_oversize
-      add_message(p_("al", "サイズが大きすぎます。"))
+      add_message(p_("al", "Size is too large."))
       return false
     end
     return req[""]  if req[""]  # return posted string. e.g. JSON.
@@ -786,23 +786,23 @@ class AlText < AlWidget
 
     if @value == "" || @value == nil
       if @required
-        @message = p_("al", "%sを入力してください。") % @label
+        @message = p_("al", "%s is required.") % @label
         return false
       end
       return true
     end
 
     if @max && @value.length > @max
-      @message = p_("al", "%1$sは、最大%2$d文字で入力してください。") % [@label, @max]
+      @message = p_("al", "%1$s must be entered within %2$d characters.") % [@label, @max]
       return false
     end
     if @min && @value.length < @min
-      @message = p_("al", "%1$sは、最低%2$d文字入力してください。") % [@label, @min]
+      @message = p_("al", "%1$s must be at least %2$d characters long.") % [@label, @min]
       return false
     end
 
     if @validator !~ @value
-      @message = p_("al", "%sを正しく入力してください。") % @label
+      @message = p_("al", "Please enter %s correctly.") % @label
       return false
     end
 
@@ -973,14 +973,14 @@ class AlSelector < AlWidget
 
     if @value == "" || @value == nil
       if @required
-        @message = p_("al", "%sを選んでください。") % @label
+        @message = p_("al", "Please select %s.") % @label
         return false
       end
       return true
     end
 
     if ! @options[@value.to_sym] && ! @options[@value.to_s] && ! @options[@value.to_i]
-      @message = p_("al", "%sの入力が、規定値以外です。") % @label
+      @message = p_("al", "The input for %s is not a valid value.") % @label
       return false
     end
 
@@ -1091,22 +1091,22 @@ class AlCheckboxes < AlSelector
     @message = ""
 
     if @max && @value.size > @max
-      @message = p_("al", "%1$sは、最大%2$d個選んでください。") % [@label, @max]
+      @message = p_("al", "Please select a maximum of %2$d for %1$s.") % [@label, @max]
       return false
     end
     if @min && @value.size < @min
-      @message = p_("al", "%1$sは、最低%2$d個選んでください。") % [@label, @min]
+      @message = p_("al", "Please select a minimum of %2$d for %1$s.") % [@label, @min]
       return false
     end
 
     if @value.empty? && @required
-      @message = p_("al", "%sを選んでください。") % @label
+      @message = p_("al", "Please select %s.") % @label
       return false
     end
 
     @value.each { |v|
       if ! @options[v.to_sym] && ! @options[v.to_s] && ! @options[v.to_i]
-        @message = p_("al", "%sの入力が、規定値以外です。") % @label
+        @message = p_("al", "The input for %s is not a valid value.") % @label
         return false
       end
     }
@@ -1413,7 +1413,7 @@ class AlInteger < AlNumber
 
     if @value == "" || @value == nil
       if @required
-        @message = p_("al", "%sを入力してください。") % @label
+        @message = p_("al", "%s is required.") % @label
         return false
       end
       @value = nil
@@ -1421,17 +1421,17 @@ class AlInteger < AlNumber
     end
 
     if /^[\s]*[+-]?[\d]+[\s]*$/ !~ @value.to_s
-      @message = p_("al", "%sは整数で入力してください。") % @label
+      @message = p_("al", "Please enter %s as an integer.") % @label
       return false
     end
 
     v = @value.to_i
     if @max && v > @max
-      @message = p_("al", "%1$sは、%2$d以下を入力してください。") % [@label, @max]
+      @message = p_("al", "%1$s must be %2$d or less.") % [@label, @max]
       return false
     end
     if @min && v < @min
-      @message = p_("al", "%1$sは、%2$d以上を入力してください。") % [@label, @min]
+      @message = p_("al", "%1$s must be %2$d or more.") % [@label, @min]
       return false
     end
     @value = v
@@ -1458,7 +1458,7 @@ class AlFloat < AlNumber
 
     if @value == "" || @value == nil
       if @required
-        @message = p_("al", "%sを入力してください。") % @label
+        @message = p_("al", "%s is required.") % @label
         return false
       end
       @value = nil
@@ -1466,17 +1466,17 @@ class AlFloat < AlNumber
     end
 
     if /^[\s]*[+-]?[\d]+(\.[\d]+)?([eE][+-]?[\d]+)?$/ !~ @value.to_s
-      @message = p_("al", "%sを正しく入力してください。") % @label
+      @message = p_("al", "Please enter %s correctly.") % @label
       return false
     end
 
     v = @value.to_f
     if @max && v > @max
-      @message = p_("al", "%1$sは、%2$d以下を入力してください。") % [@label, @max]
+      @message = p_("al", "%1$s must be %2$f or less.") % [@label, @max]
       return false
     end
     if @min && v < @min
-      @message = p_("al", "%1$sは、%2$d以上を入力してください。") % [@label, @min]
+      @message = p_("al", "%1$s must be %2$f or more.") % [@label, @min]
       return false
     end
     @value = v
@@ -1535,7 +1535,7 @@ class AlTimestamp < AlWidget
 
     if @value == "" || @value == nil
       if @required
-        @message = p_("al", "%sを入力してください。") % @label
+        @message = p_("al", "%s is required.") % @label
         return false
       end
       @value = nil
@@ -1545,16 +1545,16 @@ class AlTimestamp < AlWidget
     begin
       @value = normalize( @value.to_s )
     rescue
-      @message = p_("al", "%sを正しく入力してください。") % @label
+      @message = p_("al", "Please enter %s correctly.") % @label
       return false
     end
 
     if @max && @value > @max
-      @message = p_("al", "%1$sは、最大%2$sまでで入力してください。") % [@label, @max.strftime(@value_format)]
+      @message = p_("al", "%1$s must be no more than %2$s.") % [@label, @max.strftime(@value_format)]
       return false
     end
     if @min && @value < @min
-      @message = p_("al", "%1$sは、最小%2$sまでで入力してください。") % [@label, @min.strftime(@value_format)]
+      @message = p_("al", "%1$s must be at least %2$s.") % [@label, @min.strftime(@value_format)]
       return false
     end
 
