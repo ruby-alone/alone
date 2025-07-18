@@ -49,7 +49,7 @@ class AlFile < AlWidget
 
     if @value[:size] == 0
       if @required
-        @message = "#{@label}を指定してください。"
+        @message = p_("al", "%sを指定してください。") % @label
         return false
       end
     end

@@ -94,7 +94,7 @@ class AlLogin
     # 認証。ユーザコードでオーバライドされた confirm()が呼び出される。
     # NGなら、フォームを表示して終了。
     if ! confirm()
-      @form.add_message( "ユーザIDまたはパスワードが違います。" )
+      @form.add_message( p_("al", "ユーザIDまたはパスワードが違います。"))
       display_confirm_screen()
       return false
     end

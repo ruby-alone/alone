@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# -*- coding: utf-8 -*-
+#
 # alone : application framework for embedded systems.
 #   Copyright (c) 2009-2010 Inas Co Ltd. All Rights Reserved.
 #   Copyright (c) 2018-2022 Hirohito Higashi All Rights Reserved.
@@ -176,8 +176,8 @@ class AlForm
   #@note form method="GET" と、AlControllerの仕組みを共存させるためのメソッド。
   #
   def use_get_method( arg = {} )
-    @widgets[:ctrl] = AlHidden.new("ctrl", :value=>(arg[:ctrl] || Alone::ctrl));
-    @widgets[:action] = AlHidden.new("action", :value=>(arg[:action] || Alone::action));
+    @widgets[:ctrl] = AlHidden.new("ctrl", :value=>(arg[:ctrl] || Alone::ctrl))
+    @widgets[:action] = AlHidden.new("action", :value=>(arg[:action] || Alone::action))
     @method = "GET"
   end
 
@@ -356,7 +356,7 @@ class AlForm
     # リクエストが正当なものか確認
     #
     if @@flag_request_oversize
-      add_message("サイズが大きすぎます。")
+      add_message(p_("al", "サイズが大きすぎます。"))
       return false
     end
     return req[""]  if req[""]  # return posted string. e.g. JSON.
@@ -786,23 +786,23 @@ class AlText < AlWidget
 
     if @value == "" || @value == nil
       if @required
-        @message = "#{@label}を入力してください。"
+        @message = p_("al", "%sを入力してください。") % @label
         return false
       end
       return true
     end
 
     if @max && @value.length > @max
-      @message = "#{@label}は、最大#{@max}文字で入力してください。"
+      @message = p_("al", "%1$sは、最大%2$d文字で入力してください。") % [@label, @max]
       return false
     end
     if @min && @value.length < @min
-      @message = "#{@label}は、最低#{@min}文字入力してください。"
+      @message = p_("al", "%1$sは、最低%2$d文字入力してください。") % [@label, @min]
       return false
     end
 
     if @validator !~ @value
-      @message = "#{@label}を正しく入力してください。"
+      @message = p_("al", "%sを正しく入力してください。") % @label
       return false
     end
 
@@ -973,14 +973,14 @@ class AlSelector < AlWidget
 
     if @value == "" || @value == nil
       if @required
-        @message = "#{@label}を選んでください。";
+        @message = p_("al", "%sを選んでください。") % @label
         return false
       end
       return true
     end
 
     if ! @options[@value.to_sym] && ! @options[@value.to_s] && ! @options[@value.to_i]
-      @message = "#{@label}の入力が、規定値以外です。";
+      @message = p_("al", "%sの入力が、規定値以外です。") % @label
       return false
     end
 
@@ -1091,22 +1091,22 @@ class AlCheckboxes < AlSelector
     @message = ""
 
     if @max && @value.size > @max
-      @message = "#{@label}は、最大#{@max}個選んでください。"
+      @message = p_("al", "%1$sは、最大%2$d個選んでください。") % [@label, @max]
       return false
     end
     if @min && @value.size < @min
-      @message = "#{@label}は、最低#{@min}個選んでください。"
+      @message = p_("al", "%1$sは、最低%2$d個選んでください。") % [@label, @min]
       return false
     end
 
     if @value.empty? && @required
-      @message = "#{@label}を選んでください。";
+      @message = p_("al", "%sを選んでください。") % @label
       return false
     end
 
     @value.each { |v|
       if ! @options[v.to_sym] && ! @options[v.to_s] && ! @options[v.to_i]
-        @message = "#{@label}の入力が、規定値以外です。";
+        @message = p_("al", "%sの入力が、規定値以外です。") % @label
         return false
       end
     }
@@ -1413,7 +1413,7 @@ class AlInteger < AlNumber
 
     if @value == "" || @value == nil
       if @required
-        @message = "#{@label}を入力してください。"
+        @message = p_("al", "%sを入力してください。") % @label
         return false
       end
       @value = nil
@@ -1421,17 +1421,17 @@ class AlInteger < AlNumber
     end
 
     if /^[\s]*[+-]?[\d]+[\s]*$/ !~ @value.to_s
-      @message = "#{@label}は整数で入力してください。"
+      @message = p_("al", "%sは整数で入力してください。") % @label
       return false
     end
 
     v = @value.to_i
     if @max && v > @max
-      @message = "#{@label}は、#{@max}以下を入力してください。"
+      @message = p_("al", "%1$sは、%2$d以下を入力してください。") % [@label, @max]
       return false
     end
     if @min && v < @min
-      @message = "#{@label}は、#{@min}以上を入力してください。"
+      @message = p_("al", "%1$sは、%2$d以上を入力してください。") % [@label, @min]
       return false
     end
     @value = v
@@ -1458,7 +1458,7 @@ class AlFloat < AlNumber
 
     if @value == "" || @value == nil
       if @required
-        @message = "#{@label}を入力してください。"
+        @message = p_("al", "%sを入力してください。") % @label
         return false
       end
       @value = nil
@@ -1466,17 +1466,17 @@ class AlFloat < AlNumber
     end
 
     if /^[\s]*[+-]?[\d]+(\.[\d]+)?([eE][+-]?[\d]+)?$/ !~ @value.to_s
-      @message = "#{@label}を正しく入力してください。"
+      @message = p_("al", "%sを正しく入力してください。") % @label
       return false
     end
 
     v = @value.to_f
     if @max && v > @max
-      @message = "#{@label}は、#{@max}以下を入力してください。"
+      @message = p_("al", "%1$sは、%2$d以下を入力してください。") % [@label, @max]
       return false
     end
     if @min && v < @min
-      @message = "#{@label}は、#{@min}以上を入力してください。"
+      @message = p_("al", "%1$sは、%2$d以上を入力してください。") % [@label, @min]
       return false
     end
     @value = v
@@ -1535,7 +1535,7 @@ class AlTimestamp < AlWidget
 
     if @value == "" || @value == nil
       if @required
-        @message = "#{@label}を入力してください。"
+        @message = p_("al", "%sを入力してください。") % @label
         return false
       end
       @value = nil
@@ -1545,17 +1545,16 @@ class AlTimestamp < AlWidget
     begin
       @value = normalize( @value.to_s )
     rescue
-      @message = "#{@label}を正しく入力してください。"
+      @message = p_("al", "%sを正しく入力してください。") % @label
       return false
     end
 
     if @max && @value > @max
-#      @message = "#{@label}は、最大#{@max.strftime(self.class::STRFTIME_FORMAT)}までで入力してください。"
-      @message = "#{@label}は、最大#{@max.strftime(@value_format)}までで入力してください。"
+      @message = p_("al", "%1$sは、最大%2$sまでで入力してください。") % [@label, @max.strftime(@value_format)]
       return false
     end
     if @min && @value < @min
-      @message = "#{@label}は、最小#{@min.strftime(@value_format)}までで入力してください。"
+      @message = p_("al", "%1$sは、最小%2$sまでで入力してください。") % [@label, @min.strftime(@value_format)]
       return false
     end
 
