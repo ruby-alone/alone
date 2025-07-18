@@ -492,10 +492,8 @@ end
 # fallback function for gettext
 #
 if !defined?(GetText)
-  def _(s)
-    s
-  end
-  def p_(msgctxt, s)
-    s
-  end
+  require "al_gettext"
+  include AlGetText
+
+  set_locale("ja_JP")
 end
