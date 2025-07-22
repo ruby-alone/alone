@@ -22,29 +22,15 @@ module AlGetText
 
 
   ##
-  # bind text domain
+  # load transration file.
   #
-  def bindtextdomain(domain_name, **options)
-    @@domain_name = domain_name
-    @@path_mo = options[:path]
-  end
-
-
-  ##
-  # set the locale
-  #
-  #@param [String]  locale  ロケール名
-  #
-  def set_locale( locale )
-    @@current_locale = locale
-    return if @@trans_tables[locale]
-
+  def _load_trans_file()
     # read the .mo file
-    file_path = "#{@@path_mo}/#{locale}/LC_MESSAGES/#{@@domain_name}.mo"
+    file_path = "#{@@path_mo}/#{@@current_locale}/LC_MESSAGES/#{@@domain_name}.mo"
 
     # check file exist.
     if !File.exist?(file_path)
-      @@trans_tables[locale] = {}
+      @@trans_tables[@@current_locale] = {}
       return
     end
 
@@ -55,7 +41,7 @@ module AlGetText
 
       # check magic number.
       if magic != 0x950412de
-        raise "Invalid MO file"
+        raise "Invalid MO file '#{file_path}'"
       end
 
       # read the original and trans table informations.
@@ -85,23 +71,38 @@ module AlGetText
       }
     }
 
-    @@trans_tables[locale] = table
+    @@trans_tables[@@current_locale] = table
+  end
+
+  ##
+  # bind text domain
+  #
+  def bindtextdomain(domain_name, **options)
+    @@domain_name = domain_name
+    @@path_mo = options[:path]
+  end
+
+  ##
+  # set the locale
+  #
+  #@param [String]  locale  ロケール名
+  #
+  def set_locale( locale )
+    @@current_locale = locale
   end
 
   ##
   # gettext
   #
   def _(s)
-    tbl = @@trans_tables[ @@current_locale ] || {}
-    tbl[s] || s
+    (@@trans_tables[ @@current_locale ] || _load_trans_file())[s] || s
   end
 
   ##
   # gettext with context
   #
   def p_(msgctxt, s)
-    tbl = @@trans_tables[ @@current_locale ] || {}
-    tbl["#{msgctxt}\x04#{s}"] || s
+    (@@trans_tables[ @@current_locale ] || _load_trans_file())["#{msgctxt}\x04#{s}"] || s
   end
 
 end
