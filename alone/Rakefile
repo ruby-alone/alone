@@ -1,0 +1,194 @@
+# alone : application framework for embedded systems.
+#
+# This file is destributed under BSD License. Please read the LICENSE file.
+#
+#
+
+
+require "rbconfig"
+
+Dir.chdir(File.dirname(__FILE__))
+
+
+
+########################################
+# about locale
+#
+# (Directory structure)
+#
+#  lib/
+#   +-- locale/  (alone-lib only translation file)
+#        |-- alone.pot
+#        +-- ja_JP/
+#             |-- alone.po
+#             +-- LC_MESSAGES/
+#                  |-- messages.mo
+#
+#  locale/       (user programs translation file)
+#   |-- userapp.pot
+#   +-- ja_JP/
+#        |-- userapp.po
+#        +-- LC_MESSAGES/
+#             |-- messages.mo (user and alone-lib merged)
+
+GETTEXT_ALONE_LOCALE_DIR = "lib/locale"
+GETTEXT_LOCALE_DIR = "locale"
+
+# temporary.
+task :default => [:gettext_alone_make_pot,
+                  :gettext_alone_make_po,
+                  :gettext_alone_make_mo,
+                  :gettext_make_pot,
+                  :gettext_make_po,
+                  :gettext_make_mo] do
+end
+
+
+#
+# Get locale from environment variables.
+#
+def get_locale()
+  locale = ENV['locale']
+  if !locale
+    puts "Error: Specify the variable locale. (e.g. rake gettext_make_po locale=ja_JP)"
+    exit
+  end
+
+  return locale
+end
+
+def target_is_newer( target, *source_files )
+  return nil if !File.exist?( target )
+
+  target_mtime = File.mtime( target )
+  source_files.flatten.each {|file|
+    return false if File.mtime( file ) > target_mtime
+  }
+
+  return true
+end
+
+#
+# Create the translation template
+#  (lib/*.rb -> alone.pot)
+#
+task :gettext_alone_make_pot do
+  outdir = GETTEXT_ALONE_LOCALE_DIR
+  Dir.mkdir(outdir) rescue nil
+
+  files = FileList["lib/**/*.rb"]
+  outfile = "#{outdir}/alone.pot"
+  next if target_is_newer(outfile, files)
+
+  puts "\n===> Create alone.pot to #{outdir} dir."
+  sh "rxgettext #{files} --output=#{outfile}"
+  sh "sed -i '' -e '/POT-Creation-Date/d' -e '/PO-Revision-Date/d' #{outfile}"
+end
+
+#
+# Convert the translation template into a translation file for each locale.
+#  (alone.pot -> alone.po)
+#
+task :gettext_alone_make_po do
+  locale = get_locale()
+  outdir = "#{GETTEXT_ALONE_LOCALE_DIR}/#{locale}"
+  Dir.mkdir(outdir) rescue nil
+
+  # create or update .po files.
+  infile  = "#{GETTEXT_ALONE_LOCALE_DIR}/alone.pot"
+  outfile = "#{GETTEXT_ALONE_LOCALE_DIR}/#{locale}/alone.po"
+  next if target_is_newer(outfile, infile)
+
+  if !File.exist?(outfile)
+    puts "\n===> Create alone.po"
+    sh "rmsginit --locale=#{locale} --input=#{infile} --output=#{outfile}"
+  else
+    puts "\n===> Merge alone.pot with existing alone.po"
+    sh "rmsgmerge -U #{outfile} #{infile}"
+  end
+end
+
+#
+# Compile alone.po to messages.mo, alone lib only.
+#
+task :gettext_alone_make_mo do
+  locale = get_locale()
+  outdir = "#{GETTEXT_ALONE_LOCALE_DIR}/#{locale}/LC_MESSAGES"
+  Dir.mkdir(outdir) rescue nil
+
+  infile  = "#{GETTEXT_ALONE_LOCALE_DIR}/#{locale}/alone.po"
+  outfile = "#{outdir}/messages.mo"
+  next if target_is_newer(outfile, infile)
+
+  puts "\n===> Create alone only messages.mo"
+  sh "rmsgfmt #{infile} -o #{outfile}"
+end
+
+
+
+#
+# ユーザプログラム用　翻訳テンプレート(.pot)生成
+#
+# プログラムを修正した時に実行する
+#
+desc "Create gettext translation template (.pot) file."
+task :gettext_make_pot do
+  outdir = GETTEXT_LOCALE_DIR
+  Dir.mkdir(outdir) rescue nil
+
+  files = FileList["controllers/**/*.rb", "controllers/**/*.rhtml",
+                   "views/**/*.rhtml", "models/**/*.rb"]
+  outfile = "#{GETTEXT_LOCALE_DIR}/userapp.pot"
+  next if target_is_newer(outfile, files)
+
+  puts "\n===> Create userapp.pot to #{outdir} dir."
+  sh "rxgettext #{files} --output=#{outfile}"
+end
+
+
+#
+# 翻訳リソース生成 (.pot -> .po)
+#  .potファイルが修正された時（＝プログラムを修正した時）に実行する
+#  各ロケールごとに.poを作る
+#
+desc "Convert gettext template(.pot) to resource(.po) for each locale."
+task :gettext_make_po do
+  locale = get_locale()
+  outdir = "#{GETTEXT_LOCALE_DIR}/#{locale}"
+  Dir.mkdir(outdir) rescue nil
+
+  # create or update .po files.
+  infile  = "#{GETTEXT_LOCALE_DIR}/userapp.pot"
+  outfile = "#{GETTEXT_LOCALE_DIR}/#{locale}/userapp.po"
+  next if target_is_newer(outfile, infile)
+
+  if !File.exist?(outfile)
+    puts "\n===> Create userapp.po"
+    sh "rmsginit --locale=#{locale} --input=#{infile} --output=#{outfile}"
+  else
+    puts "\n===> Merge userapp.pot with existing userapp.po"
+    sh "rmsgmerge -U #{outfile} #{infile}"
+  end
+end
+
+#
+# ユーザプログラムとalone-libの翻訳リソースを統合してコンパイル
+# .po ファイルを編集後に実行する
+#
+desc "Compile gettext translation resouce files."
+#
+task :gettext_make_mo do
+  locale = get_locale()
+  outdir = "#{GETTEXT_LOCALE_DIR}/#{locale}/LC_MESSAGES"
+  Dir.mkdir(outdir) rescue nil
+
+  files = FileList["#{GETTEXT_ALONE_LOCALE_DIR}/#{locale}/alone.po",
+                   "#{GETTEXT_LOCALE_DIR}/#{locale}/userapp.po"]
+  outfile = "#{outdir}/messages.mo"
+  next if target_is_newer(outfile, files)
+
+  puts "\n===> merge userapp.po with alone.po, and compile."
+  sh "rmsgcat --output=#{outdir}/_temp_.po #{files}"
+  sh "rmsgfmt #{outdir}/_temp_.po -o #{outfile}"
+  File.delete("#{outdir}/_temp_.po")
+end
