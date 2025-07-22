@@ -81,5 +81,17 @@ AL_TEMPLATE_BODY = %Q(</head>\n<body>\n)
 AL_TEMPLATE_FOOTER = %Q(</body>\n</html>\n)
 
 
-$LOAD_PATH << AL_BASEDIR
+# デフォルトロケール
+AL_DEFAULT_LOCALE="ja_JP"
+
+
+if false
+  require "gettext"
+  include GetText
+  bindtextdomain("messages", path: "#{File.dirname(__FILE__)}/locale", output_charset:"UTF-8")
+  set_locale AL_DEFAULT_LOCALE
+end
+
+
+$LOAD_PATH << AL_BASEDIR << "#{File.dirname(__FILE__)}/models"
 require 'al_main'

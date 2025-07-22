@@ -14,6 +14,21 @@ module AlGetText
   #@return [String]  カレントロケール
   @@current_locale = nil
 
+  #@return [String]  ドメイン名
+  @@domain_name = "messages"
+
+  #@return [String]  翻訳ファイルパス
+  @@path_mo = "#{AL_BASEDIR}/locale"
+
+
+  ##
+  # bind text domain
+  #
+  def bindtextdomain(domain_name, **options)
+    @@domain_name = domain_name
+    @@path_mo = options[:path]
+  end
+
 
   ##
   # set the locale
@@ -22,11 +37,10 @@ module AlGetText
   #
   def set_locale( locale )
     @@current_locale = locale
-
     return if @@trans_tables[locale]
 
     # read the .mo file
-    file_path = "#{AL_BASEDIR}/locale/#{locale}/LC_MESSAGES/messages.mo"
+    file_path = "#{@@path_mo}/#{locale}/LC_MESSAGES/#{@@domain_name}.mo"
 
     # check file exist.
     if !File.exist?(file_path)
@@ -90,4 +104,11 @@ module AlGetText
     tbl["#{msgctxt}\x04#{s}"] || s
   end
 
+end
+
+
+##
+# included mark for al_main.rb
+#
+module GetText
 end
