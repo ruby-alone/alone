@@ -89,7 +89,7 @@ if false
   require "gettext"
   include GetText
   bindtextdomain("messages", path: "#{File.dirname(__FILE__)}/locale", output_charset:"UTF-8")
-  set_locale AL_DEFAULT_LOCALE
+  set_locale( AL_DEFAULT_LOCALE )
 end
 
 
