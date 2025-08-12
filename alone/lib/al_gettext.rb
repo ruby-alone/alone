@@ -30,8 +30,7 @@ module AlGetText
 
     # check file exist.
     if !File.exist?(file_path)
-      @@trans_tables[@@current_locale] = {}
-      return
+      return @@trans_tables[@@current_locale] = {}
     end
 
     table = {}
