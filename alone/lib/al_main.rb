@@ -495,5 +495,5 @@ if !defined?(GetText)
   require "al_gettext"
   include AlGetText
 
-  set_locale( AL_DEFAULT_LOCALE )
+  set_locale( AL_DEFAULT_LOCALE )  if defined?(AL_DEFAULT_LOCALE)
 end

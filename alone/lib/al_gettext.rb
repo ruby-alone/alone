@@ -18,21 +18,28 @@ module AlGetText
   @@domain_name = "messages"
 
   #@return [String]  翻訳ファイルパス
-  @@path_mo = "#{AL_BASEDIR}/locale"
+  @@path_mo = nil
 
 
   ##
   # load transration file.
   #
   def _load_trans_file()
-    # read the .mo file
-    file_path = "#{@@path_mo}/#{@@current_locale}/LC_MESSAGES/#{@@domain_name}.mo"
+    if @@path_mo
+      file_path = "#{@@path_mo}/#{@@current_locale}/LC_MESSAGES/#{@@domain_name}.mo"
+    else
+      file_path = "#{AL_BASEDIR}/../locale/#{@@current_locale}/LC_MESSAGES/#{@@domain_name}.mo"
+      if !File.exist?(file_path)
+        file_path = "#{AL_BASEDIR}/locale/#{@@current_locale}/LC_MESSAGES/#{@@domain_name}.mo"
+      end
+    end
 
     # check file exist.
     if !File.exist?(file_path)
       return @@trans_tables[@@current_locale] = {}
     end
 
+    # read the .mo file
     table = {}
     File.open(file_path, "rb") {|f|
       # read header.
@@ -104,11 +111,4 @@ module AlGetText
     (@@trans_tables[ @@current_locale ] || _load_trans_file())["#{msgctxt}\x04#{s}"] || s
   end
 
-end
-
-
-##
-# included mark for al_main.rb
-#
-module GetText
 end
