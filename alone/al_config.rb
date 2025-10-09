@@ -6,19 +6,39 @@
 #
 # 設定情報保存ファイル
 # 必要に応じて書き換えること。
+#
+# 標準のディレクトリ構造
+#  /PATH/TO/ --- al_config.rb  -- 共通設定ファイル（このファイル）
+#             +- lib/          -- Aloneライブラリ
+#             +- controllers/  -- コントローラ群
+#             +- views/        -- htmlテンプレート
+#             +- models/       -- モデル
+#             +- htdocs/       -- ドキュメントルート、スタティックコンテンツ
+#             +- bin/          -- 常駐プログラム(AlWorker)等
 
-# Aloneライブラリのサーバー上での設置パス
-AL_BASEDIR = "#{File.dirname(__FILE__)}/lib"
+
+# ディレクトリ設定
+AL_BASE_DIR  = File.dirname(__FILE__)
+AL_LIB_DIR   = "#{AL_BASE_DIR}/lib"
+AL_CTRL_DIR  = "#{AL_BASE_DIR}/controllers"
+AL_MODEL_DIR = "#{AL_BASE_DIR}/models"
+AL_BASEDIR = AL_LIB_DIR                 # for backward compatibility.
+
 # テンポラリファイル設置パス
-AL_TEMPDIR = "/tmp/"
+AL_TEMP_DIR = "/tmp/"
+AL_TEMPDIR = AL_TEMP_DIR                # for backward compatibility.
+
 # 使用キャラクタセット（現在UTF-8固定）
 AL_CHARSET = Encoding::UTF_8
+
 # エラーハンドラ
 AL_ERROR_HANDLER = "handle_error_display"
 #AL_ERROR_HANDLER = "handle_error_static_page"
+
 # 静的コンテンツの設置URI。空文字列ならルートを表す。
 #AL_URI_STATIC = "~mine/prog1"
 AL_URI_STATIC = ""
+
 
 #
 # Log
@@ -31,12 +51,6 @@ AL_LOG_SIZE = 1048576
 
 
 #
-# Controller
-#
-# アプリケーションを導入したディレクトリ絶対パス
-AL_CTRL_DIR = "#{File.dirname(__FILE__)}/controllers"
-
-#
 # Form Manager
 #
 # 最大リクエストサイズ (bytes)
@@ -47,7 +61,7 @@ AL_FORM_MAX_CONTENT_LENGTH = 8000000
 # Session Manager
 #
 # セッションをファイルに保存する場合の場所
-AL_SESS_DIR = AL_TEMPDIR
+AL_SESS_DIR = AL_TEMP_DIR
 
 # セッションタイムアウト（秒）
 AL_SESS_TIMEOUT = 28800
@@ -81,6 +95,10 @@ AL_TEMPLATE_BODY = %Q(</head>\n<body>\n)
 AL_TEMPLATE_FOOTER = %Q(</body>\n</html>\n)
 
 
+#
+# 以下TODO
+#
+
 # デフォルトロケール
 AL_DEFAULT_LOCALE="ja_JP"
 
@@ -93,5 +111,5 @@ if false
 end
 
 
-$LOAD_PATH << AL_BASEDIR << "#{File.dirname(__FILE__)}/models"
+$LOAD_PATH << AL_LIB_DIR << AL_MODEL_DIR
 require 'al_main'
