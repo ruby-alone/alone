@@ -2,20 +2,30 @@
 
 ## 概要
  * gettext ライブラリを使う (https://rubygems.org/gems/gettext)
- * 実行時のみ、Alone独自実装を使うこともでき、gettext のインストールは不要となる
+ * 実行時のみ、Alone独自実装を使うこともできる。その場合、gettext のインストールは不要となる
+
+
+## ワークフロー
+
+TODO!
+
+1. Define messages.
+2. extract.
+3. Translate.
+4. Compile.
+5. Deploy.
+
 
 
 ## ディレクトリツリー（国際化関連のみ）
 ```
-(Alone locale directory)
-  ./lib/locale/   (alone-lib only translation file)
+  ./lib/locale/   (Alone locale directory. only alone-lib translation files.)
      |-- alone.pot
      +-- ja_JP/
           |-- alone.po
           +-- LC_MESSAGES/messages.mo
 
-(User locale directory)
-  ./locale/       (user programs translation file)
+  ./locale/       (User locale directory. not distributed.)
      |-- userapp.pot
      +-- ja_JP/
           |-- userapp.po
@@ -55,8 +65,8 @@
 
 ## 動作仕様
 
- * Aloneロケールディレクトリは、利用者は変更しない
- * ユーザロケールディレクトリは、あってもなくても良い
+ * Alone locale directory は、利用者は変更しない
+ * User locale directory は、あってもなくても良い
  * Aloneが提供するメッセージを変更したい場合、./locale/ja_JP/alone.po 等、コピーしてそちらを変更する
  * Aloneが標準で提供していない言語で Aloneが発するメッセージを翻訳する場合も、上記と同様である
  * 翻訳作業には gem gettext パッケージに含まれるコマンド群が必要となる
@@ -150,7 +160,7 @@ rake gettext_make_mo locale=ja_JP
 
 
 
-## Aloneロケールディレクトリのメンテナンス（参考）
+## Alone locale directory のメンテナンス（参考）
 
 Rakefileのタスク
 
