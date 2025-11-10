@@ -1,8 +1,9 @@
 /*
  * alone : application framework for embedded systems.
- *               Copyright (c) 2009-2017 Inas Co Ltd. All Rights Reserved.
- *               Copyright (c) 2010-2017 FAR END Technologies Corporation.
- *               All Rights Reserved.
+ *		Copyright (c) 2009-2017 Inas Co Ltd. All Rights Reserved.
+ *		Copyright (c) 2010-2025 FAR END Technologies Corporation.
+ *		Copyright (c) 2025-     Hirohito higashi.
+ *		All Rights Reserved.
  *
  * This file is destributed under BSD License. Please read the LICENSE file.
  */
@@ -405,3 +406,20 @@ Alone.Ipc.prototype.call = function( ipc_name, ipc_arg )
 
   return Alone.ajax( Alone.make_uri( uri_param ), this.options );
 };
+
+
+/**
+  gettext line language translation function.
+
+  @param  [String]	翻訳対象文字列
+  @return [String]	翻訳後文字列
+*/
+function _( s )
+{
+  try {
+    var ts = AL_LC_MESSAGES[s];
+    return (ts === undefined || ts === "") ? s : ts;
+  } catch(e) {
+    return s;
+  }
+}
