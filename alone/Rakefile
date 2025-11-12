@@ -15,7 +15,8 @@ Dir.chdir(File.dirname(__FILE__))
 ########################################
 # about locale
 #
-# (Directory structure)
+# (Directory structure of
+#   controllers(.rb), models(.rb) and html-template(.rhtml) )
 #
 #  lib/locale/   (alone-lib only translation file)
 #   |-- alone.pot

@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 #
-#
-#
+# JavaScript 用 gettext 対象文字列抽出
 #
 # 動作概要
 #  * JavaScriptソースから、_("...") 文字列を取り出しターゲットファイルを作る
@@ -11,7 +10,17 @@
 #  htdocs/locale/ja_JP/messages.js
 #
 # Usage
+#  make_js_gettext.rb -o OutputFile InputFiles...
+#
+# Workflow example.
 #  make_js_gettext.rb -o htdocs/locale/ja_JP/messages.js htdocs/js/*.js
+#  edit htdocs/locale/ja_JP/messages.js
+#
+# Note
+#  gettext で言うところの、.pot(template) .po は作らない。
+#
+# TODO
+#  出力ディレクトリの作成は、手動？自動？
 #
 
 require "optparse"
