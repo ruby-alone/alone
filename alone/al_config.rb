@@ -112,4 +112,3 @@ end
 
 
 $LOAD_PATH << AL_LIB_DIR << AL_MODEL_DIR
-require 'al_main'
