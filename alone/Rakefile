@@ -13,27 +13,37 @@ Dir.chdir(File.dirname(__FILE__))
 
 
 ########################################
-# about locale
+# About locale
+########################################
 #
-# (Directory structure of
-#   controllers(.rb), models(.rb) and html-template(.rhtml) )
+# Directory structure of controllers(.rb), models(.rb) and views(.rhtml)
 #
-#  lib/locale/   (alone-lib only translation file)
-#   |-- alone.pot
-#   +-- ja_JP/
-#        |-- alone.po
-#        +-- LC_MESSAGES/messages.mo
-#
-#  locale/       (user programs translation file)
+# (user programs translation file)
+#  locale/
 #   |-- userapp.pot
 #   +-- ja_JP/
 #        |-- userapp.po
 #        |-- (alone.po)              (This takes priority if exist)
 #        +-- LC_MESSAGES/messages.mo (User and alone-lib merged)
 #
+# (alone-lib only translation file)
+#  lib/locale/
+#   |-- alone.pot
+#   +-- ja_JP/
+#        |-- alone.po
+#        +-- LC_MESSAGES/messages.mo
+#
+#
+# Directory structure of JavaScript(.js)
+#  htdocs/
+#   +-- locale/
+#        +-- ja_JP/
+#             +-- messages.js
+#
 
-GETTEXT_ALONE_LOCALE_DIR = "lib/locale"
 GETTEXT_LOCALE_DIR = "locale"
+GETTEXT_ALONE_LOCALE_DIR = "lib/locale"
+GETTEXT_JS_LOCALE_DIR = "htdocs/locale"
 
 # temporary.
 # task :default => [:gettext_make_alone_pot,
@@ -45,7 +55,8 @@ GETTEXT_LOCALE_DIR = "locale"
 # end
 task :default => [:gettext_make_pot,
                   :gettext_make_po,
-                  :gettext_make_mo] do
+                  :gettext_make_mo,
+                  :gettext_js] do
 end
 
 task :gettext_make_alone => [:gettext_make_alone_pot,
@@ -82,6 +93,7 @@ def target_is_newer( target, *source_files )
 
   return true
 end
+
 
 ##
 # For Alone library;
@@ -262,4 +274,26 @@ task :gettext_make_mo do
   sh "rmsgcat --output=#{outdir}/_temp_.po #{files}"
   sh "rmsgfmt #{outdir}/_temp_.po -o #{outfile}"
   File.delete("#{outdir}/_temp_.po")
+end
+
+
+##
+# For user programs;
+# Extract gettext translation message from JavaScript files
+#  and create or update translation file.
+#  (*.js -> htdocs/locale/(ja_JP)/messages.js)
+#
+desc "Extract gettext translation message from javascript files."
+#
+task :gettext_js do
+  locale = get_locale()
+  outdir = "#{GETTEXT_JS_LOCALE_DIR}/#{locale}"
+  FileUtils.mkpath(outdir)
+
+  files = FileList["htdocs/**/*.js"].exclude(/htdocs\/locale\//)
+  outfile = "#{outdir}/messages.js"
+  next if target_is_newer(outfile, files)
+
+  puts "\n===> Create (or update) #{outfile}"
+  sh "lib/make_js_gettext.rb -v -o #{outfile} #{files}"
 end

@@ -10,7 +10,7 @@
 # 標準のディレクトリ構造
 #  /PATH/TO/ --- al_config.rb  -- 共通設定ファイル（このファイル）
 #             +- lib/          -- Aloneライブラリ
-#             +- controllers/  -- コントローラ群
+#             +- controllers/  -- コントローラ
 #             +- views/        -- htmlテンプレート
 #             +- models/       -- モデル
 #             +- htdocs/       -- ドキュメントルート、スタティックコンテンツ
@@ -79,6 +79,7 @@ AL_LOGIN_URI = "?ctrl=login"
 #
 # テンプレート保存場所へのパス。ドットはコントローラと同じディレクトリ。
 AL_TEMPLATE_DIR = '.'
+#AL_TEMPLATE_DIR = "#{AL_BASE_DIR}/views"
 
 # テンプレートキャッシュを使う場合のディレクトリ。nilならキャッシュしない。
 AL_TEMPLATE_CACHE = nil
