@@ -6,7 +6,7 @@
 #
 # This file is destributed under BSD License. Please read the LICENSE file.
 #
-# Using sqlite3 (1.3.13)
+# tested with sqlite3 gem 2.7.3
 
 require 'sqlite3'
 require 'al_rdbw'
@@ -24,7 +24,6 @@ class AlRdbwSqlite < AlRdbw
     return false  if ! @dsn
 
     @handle = SQLite3::Database.new( @dsn )
-    @handle.type_translation = true
     @handle.busy_timeout( 30000 )
     @dsn = nil
   end
