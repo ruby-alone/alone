@@ -23,16 +23,16 @@ class TodoPostgresController < AlController
   #
   def initialize()
     @form = AlForm.new(
-      AlInteger.new( "id", foreign:true ),
-      AlDate.new( "create_date", label:"登録日", value:Time.now ),
-      AlTextArea.new( "memo", label:"ToDoメモ", required:true ),
-      AlDate.new( "limit_date", label:"期限" ),
-      AlSubmit.new( "submit1", value:"決定", tag_attr:{style:"float: right;"} )
+      AlInteger.new("id", foreign:true ),
+      AlDate.new("create_date", tag_type:"date", label:"登録日", value:Time.now ),
+      AlTextArea.new("memo", label:"ToDoメモ", required:true ),
+      AlDate.new("limit_date", tag_type:"date", label:"期限" ),
+      AlSubmit.new("submit1", value:"決定", tag_attr:{style:"float: right;"} )
     )
 
     # use postgresql
     @db = AlPersistPostgres.connect( DSN )
-    @persist = @db.table( "todo", :id )
+    @persist = @db.table("todo", :id )
   end
 
 
@@ -44,9 +44,17 @@ class TodoPostgresController < AlController
 
   rescue PG::Error=>ex
     puts Alone.escape_html(ex.message) + "<br><br>"
-    puts "Create table first.<br>"
-    puts "create table todo ( id serial primary key, create_date date, memo text, limit_date date );<br>"
-    puts "DSN #{DSN.to_s}<br>"
+    puts "Create user, database and table at first.<br>"
+    puts "(e.g.)<pre>"
+    puts "create user al_user1 password 'al_pass1';"
+    puts "create database al_testdb1;"
+    puts "\\c al_testdb1"
+    puts "create table todo ( id serial primary key, create_date date, memo text, limit_date date );"
+    puts "grant all on todo to al_user1 ;"
+    puts "grant all on todo_id_seq to al_user1 ;"
+    puts ""
+    puts "DSN #{DSN.to_s}"
+    puts "</pre>"
   end
 
 end

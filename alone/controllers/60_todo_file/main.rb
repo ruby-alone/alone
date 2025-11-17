@@ -23,13 +23,13 @@ class TodoFileController < AlController
   #
   def initialize()
     @form = AlForm.new(
-      AlInteger.new( "id", foreign:true ),
-      AlDate.new( "create_date", label:"登録日", value:Time.now ),
-#      AlRadios.new( "priority", label:"優先度",
+      AlInteger.new("id", foreign:true ),
+      AlDate.new("create_date", tag_type:"date", label:"登録日", value:Time.now ),
+#      AlRadios.new("priority", label:"優先度",
 #        options:{ r1:"急ぎ", r2:"普通", r3:"低い" }, required:true ),
-      AlTextArea.new( "memo", label:"ToDoメモ", required:true ),
-      AlDate.new( "limit_date", label:"期限" ),
-      AlSubmit.new( "submit1", value:"決定", tag_attr:{style:"float: right;"} )
+      AlTextArea.new("memo", label:"ToDoメモ", required:true ),
+      AlDate.new("limit_date", tag_type:"date", label:"期限" ),
+      AlSubmit.new("submit1", value:"決定", tag_attr:{style:"float: right;"} )
     )
 
     # use file
