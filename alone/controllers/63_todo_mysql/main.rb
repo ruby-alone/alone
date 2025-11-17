@@ -10,11 +10,10 @@
 #
 
 require 'al_form'
-require 'al_persist_mysql'
+require 'al_persist_mysql2'
 require 'al_mif'
 
-DSN = {host:"localhost", db:"al_testdb1",
-       user:"al_user1", passwd:"al_pass1"}
+DSN = {host:"localhost", database:"al_testdb1", username:"al_user1", password:"al_pass1"}
 
 class TodoMysqlController < AlController
 
@@ -23,16 +22,16 @@ class TodoMysqlController < AlController
   #
   def initialize()
     @form = AlForm.new(
-      AlInteger.new( "id", foreign:true ),
-      AlDate.new( "create_date", label:"登録日", value:Time.now ),
-      AlTextArea.new( "memo", label:"ToDoメモ", required:true ),
-      AlDate.new( "limit_date", label:"期限" ),
-      AlSubmit.new( "submit1", value:"決定", tag_attr:{style:"float: right;"} )
+      AlInteger.new("id", foreign:true ),
+      AlDate.new("create_date", tag_type:"date", label:"登録日", value:Time.now ),
+      AlTextArea.new("memo", label:"ToDoメモ", required:true ),
+      AlDate.new("limit_date", tag_type:"date", label:"期限" ),
+      AlSubmit.new("submit1", value:"決定", tag_attr:{style:"float: right;"} )
     )
 
     # use mysql
-    @db = AlPersistMysql.connect( DSN )
-    @persist = @db.table( "todo", :id )
+    @db = AlPersistMysql2.connect( DSN )
+    @persist = @db.table("todo", :id )
   end
 
 
@@ -42,11 +41,13 @@ class TodoMysqlController < AlController
   def action_index
     action_list
 
-  rescue Mysql::Error =>ex
-    puts Alone.escape_html(ex.message) + "<br><br>"
+  rescue Mysql2::Error =>ex
+    puts Alone.escape_html_br(ex.message) + "<br><br>"
     puts "Create table first.<br>"
+    puts "<pre>"
     puts "create table todo ( id serial, create_date date, memo text, limit_date date );<br>"
     puts "DSN #{DSN.to_s}<br>"
+    puts "</pre>"
   end
 
 end
