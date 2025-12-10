@@ -15,13 +15,14 @@ class I18nTestController < AlController
   def initialize
     #session.delete_all()
 
-    if session[:locale]
-      @locale = session[:locale]
+    if AlSession[:locale]
+      @locale = AlSession[:locale]
     elsif defined?(AL_DEFAULT_LOCALE)
       @locale = AL_DEFAULT_LOCALE
     else
       @locale = ""
     end
+    set_locale( @locale )
 
     @locale_sel = AlOptions.new("locale",
         :options=>{none:"----", en_US:"en_US", ja_JP:"ja_JP", de_DE:"de_DE"},
@@ -32,8 +33,6 @@ class I18nTestController < AlController
   # デフォルトアクション
   #
   def action_index()
-    set_locale( @locale )
-
     # コントローラ内翻訳（モデル内も同じ）
     @my_message = _("messages in controller.")
 
@@ -47,7 +46,8 @@ class I18nTestController < AlController
     @form = AlForm.new( @locale_sel );
     if @form.validate()
       @locale = (@form.values[:locale] == "none") ? "" : @form.values[:locale]
-      session[:locale] = @locale
+      AlSession[:locale] = @locale
+      set_locale( @locale )
     end
 
     action_index()
