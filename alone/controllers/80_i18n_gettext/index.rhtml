@@ -5,6 +5,7 @@
 
 <%= body_section %>
   <div class="al-page-header">gettextを用いた国際化</div>
+  <div>Locale: <%= @locale_sel.make_tag() %></div>
 
   <p>コントローラ出力：&emsp;
     &lt;%=h @my_message %&gt; →
@@ -22,6 +23,6 @@
 <script src="<%=s "locale/" + @locale + "/messages.js" %>"></script>
 
 <!-- 動作スクリプトの読み込み -->
-<script src="<%=s "js/i18n_dev.js" %>"></script>
+<script src="<%=s "js/i18n_gettext.js" %>"></script>
 
 <%= footer_section %>
