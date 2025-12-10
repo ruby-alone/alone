@@ -486,14 +486,3 @@ class Alone
   end
   _start()
 end
-
-
-##
-# fallback function for gettext
-#
-if !defined?(GetText)
-  require "al_gettext"
-  include AlGetText
-
-  set_locale( AL_DEFAULT_LOCALE )  if defined?(AL_DEFAULT_LOCALE)
-end

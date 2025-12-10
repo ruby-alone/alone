@@ -107,7 +107,7 @@ AL_DEFAULT_LOCALE="ja_JP"
 if false
   require "gettext"
   include GetText
-  bindtextdomain("messages", path: "#{File.dirname(__FILE__)}/locale", output_charset:"UTF-8")
+  bindtextdomain("messages", path: "#{AL_BASE_DIR}/locale", output_charset:"UTF-8")
   set_locale( AL_DEFAULT_LOCALE )
 end
 
