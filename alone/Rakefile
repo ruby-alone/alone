@@ -205,7 +205,7 @@ end
 # Create the translation template.
 #  (*.rb -> userapp.pot)
 #
-desc "Create gettext translation template (.pot) file."
+desc "Create translation template (.pot) file."
 task :gettext_make_pot do
   outdir = GETTEXT_LOCALE_DIR
   FileUtils.mkpath(outdir)
@@ -225,7 +225,7 @@ end
 # Convert the translation template into a translation file for each locale.
 #  (userapp.pot -> (ja_JP)/userapp.po)
 #
-desc "Convert gettext template(.pot) to resource(.po) for each locale."
+desc "Convert template(.pot) to resource(.po) for each locale."
 task :gettext_make_po do
   locale = get_locale()
   outdir = "#{GETTEXT_LOCALE_DIR}/#{locale}"
@@ -250,8 +250,7 @@ end
 # For user programs;
 # Compile userapp.po and alone.po to messages.mo
 #
-desc "Compile gettext translation resouce files."
-#
+desc "Compile translation resouce files."
 task :gettext_make_mo do
   locale = get_locale()
   outdir = "#{GETTEXT_LOCALE_DIR}/#{locale}/LC_MESSAGES"
@@ -283,17 +282,35 @@ end
 #  and create or update translation file.
 #  (*.js -> htdocs/locale/(ja_JP)/messages.js)
 #
-desc "Extract gettext translation message from javascript files."
-#
+desc "Create JS tanslation message file only from JavaScript files."
 task :gettext_js do
+  files = FileList["htdocs/**/*.js"].exclude(/htdocs\/locale\//)
+  common_gettext_js( files )
+end
+
+
+##
+# For user programs;
+# Extract gettext translation message from JavaScript and rhtml files
+#  and create or update translation file.
+#  (*.js,*.rhtml -> htdocs/locale/(ja_JP)/messages.js)
+#
+desc "Create JS tanslation message file from .js and <script> in (r)html files."
+task :gettext_js_script do
+  files = FileList["htdocs/**/*.js", "htdocs/**/*.html",
+                   "controllers/**/*.rhtml", "views/**/*.rhtml"
+                  ].exclude(/htdocs\/locale\//)
+  common_gettext_js( files )
+end
+
+def common_gettext_js( files )
   locale = get_locale()
   outdir = "#{GETTEXT_JS_LOCALE_DIR}/#{locale}"
   FileUtils.mkpath(outdir)
 
-  files = FileList["htdocs/**/*.js"].exclude(/htdocs\/locale\//)
   outfile = "#{outdir}/messages.js"
-  next if target_is_newer(outfile, files)
+  return if target_is_newer(outfile, files)
 
   puts "\n===> Create (or update) #{outfile}"
-  sh "lib/make_js_gettext.rb -v -o #{outfile} #{files}"
+  sh "lib/make_js_gettext.rb -vv -o #{outfile} #{files}"
 end
