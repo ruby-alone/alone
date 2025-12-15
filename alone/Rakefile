@@ -45,23 +45,34 @@ GETTEXT_LOCALE_DIR = "locale"
 GETTEXT_ALONE_LOCALE_DIR = "lib/locale"
 GETTEXT_JS_LOCALE_DIR = "htdocs/locale"
 
-# temporary.
-# task :default => [:gettext_make_alone_pot,
-#                   :gettext_make_alone_po,
-#                   :gettext_make_alone_mo,
-#                   :gettext_make_pot,
-#                   :gettext_make_po,
-#                   :gettext_make_mo] do
-# end
-task :default => [:gettext_make_pot,
-                  :gettext_make_po,
-                  :gettext_make_mo,
-                  :gettext_js] do
+
+## temporary!
+task :default => [ :gettext ] do
 end
 
-task :gettext_make_alone => [:gettext_make_alone_pot,
-                             :gettext_make_alone_po,
-                             :gettext_make_alone_mo] do
+
+
+##
+# gettext workflows.
+#
+desc "A set of gettext workflows."
+task :gettext => [
+       :gettext_rb,
+       :gettext_js_script ] do
+end
+
+desc "For ruby code: A set of gettext workflows."
+task :gettext_rb => [
+       :gettext_make_pot,
+       :gettext_make_po,
+       :gettext_make_mo ] do
+end
+
+desc "For Alone library: A set of gettext workflows."
+task :gettext_alone => [
+       :gettext_make_alone_pot,
+       :gettext_make_alone_po,
+       :gettext_make_alone_mo ] do
 end
 
 
@@ -205,7 +216,6 @@ end
 # Create the translation template.
 #  (*.rb -> userapp.pot)
 #
-desc "Create translation template (.pot) file."
 task :gettext_make_pot do
   outdir = GETTEXT_LOCALE_DIR
   FileUtils.mkpath(outdir)
@@ -225,7 +235,6 @@ end
 # Convert the translation template into a translation file for each locale.
 #  (userapp.pot -> (ja_JP)/userapp.po)
 #
-desc "Convert template(.pot) to resource(.po) for each locale."
 task :gettext_make_po do
   locale = get_locale()
   outdir = "#{GETTEXT_LOCALE_DIR}/#{locale}"
@@ -249,8 +258,8 @@ end
 ##
 # For user programs;
 # Compile userapp.po and alone.po to messages.mo
+#  ((ja_JP)/userapp.po, alone.po -> (ja_JP)/LC_MESSAGES/messages.mo
 #
-desc "Compile translation resouce files."
 task :gettext_make_mo do
   locale = get_locale()
   outdir = "#{GETTEXT_LOCALE_DIR}/#{locale}/LC_MESSAGES"
@@ -282,6 +291,8 @@ end
 #  and create or update translation file.
 #  (*.js -> htdocs/locale/(ja_JP)/messages.js)
 #
+# This task is used exclusively with the gettext_js_script task.
+#
 desc "Create JS tanslation message file only from JavaScript files."
 task :gettext_js do
   files = FileList["htdocs/**/*.js"].exclude(/htdocs\/locale\//)
@@ -294,6 +305,8 @@ end
 # Extract gettext translation message from JavaScript and rhtml files
 #  and create or update translation file.
 #  (*.js,*.rhtml -> htdocs/locale/(ja_JP)/messages.js)
+#
+# This task is used exclusively with the gettext_js task.
 #
 desc "Create JS tanslation message file from .js and <script> in (r)html files."
 task :gettext_js_script do
