@@ -5,11 +5,10 @@
 #
 #
 
-
-require "rbconfig"
-
 Dir.chdir(File.dirname(__FILE__))
 
+require "rbconfig"
+require_relative "./al_config"
 
 
 ########################################
@@ -41,12 +40,17 @@ Dir.chdir(File.dirname(__FILE__))
 #             +-- messages.js
 #
 
+# Input directories.
+GETTEXT_SRC_LIB    = AL_LIB_DIR.delete_prefix(Dir::pwd + "/")
+GETTEXT_SRC_CTRL   = AL_CTRL_DIR.delete_prefix(Dir::pwd + "/")
+GETTEXT_SRC_VIEW   = AL_TEMPLATE_DIR.delete_prefix(Dir::pwd + "/")
+GETTEXT_SRC_MODEL  = AL_MODEL_DIR.delete_prefix(Dir::pwd + "/")
+GETTEXT_SRC_HTDOCS = "htdocs"
+
 # Output directories.
 GETTEXT_LOCALE_DIR = "locale"
 GETTEXT_ALONE_LOCALE_DIR = "lib/locale"
 GETTEXT_JS_LOCALE_DIR = "htdocs/locale"
-
-# TODO: Input directories は、task中にハードコードしている。
 
 
 ## temporary!
@@ -118,7 +122,7 @@ task :gettext_make_alone_pot do
   outdir = GETTEXT_ALONE_LOCALE_DIR
   FileUtils.mkpath(outdir)
 
-  files = FileList["lib/**/*.rb"]
+  files = FileList["#{GETTEXT_SRC_LIB}/**/*.rb"]
   outfile = "#{outdir}/alone.pot"
   next if target_is_newer(outfile, files)
 
@@ -223,8 +227,10 @@ task :gettext_make_pot do
   outdir = GETTEXT_LOCALE_DIR
   FileUtils.mkpath(outdir)
 
-  files = FileList["controllers/**/*.rb", "controllers/**/*.rhtml",
-                   "views/**/*.rhtml", "models/**/*.rb"]
+  files = FileList["#{GETTEXT_SRC_CTRL}/**/*.rb",
+                   "#{GETTEXT_SRC_CTRL}/**/*.rhtml",
+                   "#{GETTEXT_SRC_VIEW}/**/*.rhtml",
+                   "#{GETTEXT_SRC_MODEL}/**/*.rb"]
   outfile = "#{GETTEXT_LOCALE_DIR}/userapp.pot"
   next if target_is_newer(outfile, files)
 
@@ -303,11 +309,12 @@ desc "Create JS tanslation message file from .js and <script> in (r)html files."
 task :gettext_js do
   case ENV["gettext_js_target"]
   when nil, "all"
-    files = FileList["htdocs/**/*.js", "htdocs/**/*.html",
-                     "controllers/**/*.rhtml", "views/**/*.rhtml"
-                    ]
+    files = FileList["#{GETTEXT_SRC_HTDOCS}/**/*.js",
+                     "#{GETTEXT_SRC_HTDOCS}/**/*.html",
+                     "#{GETTEXT_SRC_CTRL}/**/*.rhtml",
+                     "#{GETTEXT_SRC_VIEW}/**/*.rhtml"]
   when "js"
-    files = FileList["htdocs/**/*.js"]
+    files = FileList["#{GETTEXT_SRC_HTDOCS}/**/*.js"]
   else
     puts "Error: Illegal parameter for gettext_js_target"
     exit
