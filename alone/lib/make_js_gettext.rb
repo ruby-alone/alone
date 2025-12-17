@@ -1,4 +1,9 @@
 #!/usr/bin/env ruby
+# alone : application framework for embedded systems.
+#   Copyright (c) 2018-2025 Hirohito Higashi All Rights Reserved.
+#
+# This file is destributed under BSD License. Please read the LICENSE file.
+#
 #
 # JavaScript 用 gettext 対象文字列抽出
 #
@@ -7,7 +12,7 @@
 #  * ターゲットファイルが既にあれば、マージ相当の動作をする
 #
 # ターゲットファイル
-#  htdocs/locale/ja_JP/messages.js
+#  htdocs/locale/(ja_JP)/messages.js
 #
 # Usage
 #  make_js_gettext.rb -o OutputFile InputFiles...
