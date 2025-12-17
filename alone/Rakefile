@@ -41,9 +41,12 @@ Dir.chdir(File.dirname(__FILE__))
 #             +-- messages.js
 #
 
+# Output directories.
 GETTEXT_LOCALE_DIR = "locale"
 GETTEXT_ALONE_LOCALE_DIR = "lib/locale"
 GETTEXT_JS_LOCALE_DIR = "htdocs/locale"
+
+# TODO: Input directories は、task中にハードコードしている。
 
 
 ## temporary!
@@ -58,7 +61,7 @@ end
 desc "A set of gettext workflows."
 task :gettext => [
        :gettext_rb,
-       :gettext_js_script ] do
+       :gettext_js ] do
 end
 
 desc "For ruby code: A set of gettext workflows."
@@ -287,43 +290,37 @@ end
 
 ##
 # For user programs;
-# Extract gettext translation message from JavaScript files
-#  and create or update translation file.
-#  (*.js -> htdocs/locale/(ja_JP)/messages.js)
-#
-# This task is used exclusively with the gettext_js_script task.
-#
-desc "Create JS tanslation message file only from JavaScript files."
-task :gettext_js do
-  files = FileList["htdocs/**/*.js"].exclude(/htdocs\/locale\//)
-  common_gettext_js( files )
-end
-
-
-##
-# For user programs;
-# Extract gettext translation message from JavaScript and rhtml files
+# Extract gettext translation message from JavaScript.
 #  and create or update translation file.
 #  (*.js,*.rhtml -> htdocs/locale/(ja_JP)/messages.js)
 #
-# This task is used exclusively with the gettext_js task.
+# (note)
+#  parameter: gettext_js_target=TARGET
+#     TARGET: "all"  .js, .rhtml, .html  (default)
+#             "js"   .js
 #
 desc "Create JS tanslation message file from .js and <script> in (r)html files."
-task :gettext_js_script do
-  files = FileList["htdocs/**/*.js", "htdocs/**/*.html",
-                   "controllers/**/*.rhtml", "views/**/*.rhtml"
-                  ].exclude(/htdocs\/locale\//)
-  common_gettext_js( files )
-end
+task :gettext_js do
+  case ENV["gettext_js_target"]
+  when nil, "all"
+    files = FileList["htdocs/**/*.js", "htdocs/**/*.html",
+                     "controllers/**/*.rhtml", "views/**/*.rhtml"
+                    ]
+  when "js"
+    files = FileList["htdocs/**/*.js"]
+  else
+    puts "Error: Illegal parameter for gettext_js_target"
+    exit
+  end
+  files.exclude(/htdocs\/locale\//)
 
-def common_gettext_js( files )
   locale = get_locale()
   outdir = "#{GETTEXT_JS_LOCALE_DIR}/#{locale}"
   FileUtils.mkpath(outdir)
 
   outfile = "#{outdir}/messages.js"
-  return if target_is_newer(outfile, files)
+  next if target_is_newer(outfile, files)
 
   puts "\n===> Create (or update) #{outfile}"
-  sh "lib/make_js_gettext.rb -vv -o #{outfile} #{files}"
+  sh "lib/make_js_gettext.rb -v -o #{outfile} #{files}"
 end

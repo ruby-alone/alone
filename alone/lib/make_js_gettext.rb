@@ -82,7 +82,7 @@ def extract_trans_strings( source_files )
 
   # すべてのファイルを読んで、対象文字列を抽出する
   source_files.each {|filename|
-    vp("Target file: #{filename}")
+    vp("Target file: #{filename}", 2)
 
     case File.extname( filename )
     when ".js"
@@ -125,16 +125,19 @@ end
 def extract_from_js_file( filename )
   file = File.open( filename )
   ret = []
+  flag_v = ($opts[:v] == 1)
 
   while txt = file.gets
     pos = 0
     while match = RX_DQSTR.match( txt, pos )
+      if flag_v; vp("Target file: #{filename}"); flag_v = false; end
       vp("Found target string: #{file.lineno}:\"#{match[1]}\"", 2)
       pos = match.end(1) + 1
       ret << [file.lineno, match[1]]
     end
     pos = 0
     while match = RX_SQSTR.match( txt, pos )
+      if flag_v; vp("Target file: #{filename}"); flag_v = false; end
       vp("Found target string: #{file.lineno}:\"#{match[1]}\"", 2)
       pos = match.end(1) + 1
       ret << [file.lineno, match[1].gsub('"', '\\"')]
@@ -158,8 +161,9 @@ def extract_from_html_file( filename )
     exit 1
   end
 
-  ret = []
   htmldoc = Nokogiri::HTML( File.read( filename ))
+  ret = []
+  flag_v = ($opts[:v] == 1)
 
   htmldoc.css("script").each {|script_node|
     file = StringIO.new( script_node.inner_html )
@@ -168,6 +172,7 @@ def extract_from_html_file( filename )
       while match = RX_DQSTR.match( txt, pos )
         lineno = script_node.line + file.lineno - 1
         pos = match.end(1) + 1
+        if flag_v; vp("Target file: #{filename}"); flag_v = false; end
         vp("Found target string: #{lineno}:\"#{match[1]}\"", 2)
         ret << [lineno, match[1]]
       end
@@ -175,6 +180,7 @@ def extract_from_html_file( filename )
       while match = RX_SQSTR.match( txt, pos )
         lineno = script_node.line + file.lineno - 1
         pos = match.end(1) + 1
+        if flag_v; vp("Target file: #{filename}"); flag_v = false; end
         vp("Found target string: #{lineno}:\"#{match[1]}\"", 2)
         ret << [lineno, match[1].gsub('"', '\\"')]
       end
