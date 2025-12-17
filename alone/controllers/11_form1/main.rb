@@ -1,8 +1,7 @@
 #!/usr/bin/env ruby
-# -*- coding: utf-8 -*-
 # alone : application framework for embedded systems.
 #   Copyright (c) 2009-2010 Inas Co Ltd. All Rights Reserved.
-#   Copyright (c) 2018-2022 Hirohito Higashi All Rights Reserved.
+#   Copyright (c) 2018-2025 Hirohito Higashi All Rights Reserved.
 #   Copyright (C) 2020-2022 Shimane IT Open-Innovation Center.
 #
 # This file is destributed under BSD License. Please read the LICENSE file.
@@ -46,7 +45,7 @@ class FormController1 < AlController
   #
   def action_index()
     session.delete_all()
-    AlTemplate.run( 'index.rhtml' )
+    AlTemplate.run("./index.rhtml")
   end
 
 
@@ -61,9 +60,9 @@ class FormController1 < AlController
   def action_confirm()
     if @form.validate()
       session[:values] = @form.values
-      AlTemplate.run( 'confirm.rhtml' )
+      AlTemplate.run("./confirm.rhtml")
     else
-      AlTemplate.run( 'index.rhtml' )
+      AlTemplate.run("./index.rhtml")
     end
   end
 
@@ -76,7 +75,7 @@ class FormController1 < AlController
   #
   def action_commit()
     @form.set_values( session[:values] )
-    AlTemplate.run( 'commit.rhtml' )
+    AlTemplate.run("./commit.rhtml")
   end
 
 
@@ -88,7 +87,7 @@ class FormController1 < AlController
   #
   def action_cancel()
     @form.set_values( session[:values] )
-    AlTemplate.run( 'index.rhtml' )
+    AlTemplate.run("./index.rhtml")
     session.delete( :values )
   end
 

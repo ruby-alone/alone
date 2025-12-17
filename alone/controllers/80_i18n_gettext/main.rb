@@ -1,3 +1,9 @@
+#!/usr/bin/env ruby
+# alone : application framework for embedded systems.
+#   Copyright (c) 2018-2025 Hirohito Higashi All Rights Reserved.
+#
+# This file is destributed under BSD License. Please read the LICENSE file.
+#
 #
 # i18n test
 #
@@ -36,7 +42,7 @@ class I18nTestController < AlController
     # コントローラ内翻訳（モデル内も同じ）
     @my_message = _("messages in controller.")
 
-    AlTemplate.run("index.rhtml")
+    AlTemplate.run("./index.rhtml")
   end
 
   #

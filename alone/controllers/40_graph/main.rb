@@ -1,9 +1,7 @@
 #!/usr/bin/env ruby
-# -*- coding: utf-8 -*-
-#
 # alone : application framework for embedded systems.
 #   Copyright (c) 2009-2010 Inas Co Ltd. All Rights Reserved.
-#   Copyright (c) 2018-2022 Hirohito Higashi All Rights Reserved.
+#   Copyright (c) 2018-2025 Hirohito Higashi All Rights Reserved.
 #   Copyright (C) 2020-2022 Shimane IT Open-Innovation Center.
 #
 # This file is destributed under BSD License. Please read the LICENSE file.
@@ -25,7 +23,7 @@ class AlControllerGraph < AlController
   # デフォルトアクション
   #
   def action_index()
-    AlTemplate.run("index.rhtml")
+    AlTemplate.run("./index.rhtml")
   end
 
   #
@@ -33,7 +31,7 @@ class AlControllerGraph < AlController
   #
   def action_line_plot()
     extract_actions("line_plot.rb")
-    AlTemplate.run("line_plot.rhtml")
+    AlTemplate.run("./line_plot.rhtml")
   end
 
   #
@@ -41,7 +39,7 @@ class AlControllerGraph < AlController
   #
   def action_bar_plot
     extract_actions("bar_plot.rb")
-    AlTemplate.run("bar_plot.rhtml")
+    AlTemplate.run("./bar_plot.rhtml")
   end
 
   #
@@ -49,7 +47,7 @@ class AlControllerGraph < AlController
   #
   def action_pie_chart
     extract_actions("pie_chart.rb")
-    AlTemplate.run("pie_chart.rhtml")
+    AlTemplate.run("./pie_chart.rhtml")
   end
 
   #
@@ -57,7 +55,7 @@ class AlControllerGraph < AlController
   #
   def action_xy_plot
     extract_actions("xy_plot.rb")
-    AlTemplate.run("xy_plot.rhtml")
+    AlTemplate.run("./xy_plot.rhtml")
   end
 
   #
@@ -65,7 +63,7 @@ class AlControllerGraph < AlController
   #
   def action_log_plot
     extract_actions("log_plot.rb")
-    AlTemplate.run("log_plot.rhtml")
+    AlTemplate.run("./log_plot.rhtml")
   end
 
   #
@@ -73,7 +71,7 @@ class AlControllerGraph < AlController
   #
   def action_scatter_plot
     extract_actions("scatter_plot.rb")
-    AlTemplate.run("scatter_plot.rhtml")
+    AlTemplate.run("./scatter_plot.rhtml")
   end
 
   #

@@ -1,1 +1,1 @@
-チャット　WEBrick(al_server.rb)では動作しません。Apache httpd 等の環境へデプロイしてお試しください。
+チャット　あらかじめ sync gem を導入し、chat_server.rb を動かしてからお試しください。

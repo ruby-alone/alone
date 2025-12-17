@@ -8,7 +8,7 @@
 #
 # chat server
 
-
+require_relative "../../al_config.rb"
 require "al_worker_ipc"
 require "al_worker_message"
 require "al_worker_debug"
