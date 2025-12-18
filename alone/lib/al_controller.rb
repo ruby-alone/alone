@@ -266,6 +266,19 @@ class AlController
     return @al_locale
   end
 
+
+  ##
+  # 翻訳ファイルのパスを返す
+  #
+  #@return [String]  翻訳ファイルのパス
+  #@example
+  #  htmlテンプレート中で以下のように使う
+  #  <script src="<%=s gettext_message_uri() %>"></script>
+  #
+  def gettext_message_uri()
+    return "locale/#{@al_locale}/messages.js"
+  end
+
 end
 
 

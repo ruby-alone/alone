@@ -1,6 +1,5 @@
 <%= header_section %>
   <title>i18n test</title>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="/js/alone.js"></script>
 
 <%= body_section %>
@@ -20,9 +19,32 @@
     <span id="ID001">---</span>
 
 <!-- 翻訳データの読み込み -->
-<script src="<%=s "locale/" + @al_locale + "/messages.js" %>"></script>
+<script src="<%=s gettext_message_uri() %>"></script>
 
-<!-- 動作スクリプトの読み込み -->
-<script src="<%=s "js/i18n_gettext.js" %>"></script>
+<!-- 動作スクリプト
+  (note)
+  デフォルトでは、独立した .js ファイルのみパースされ、
+  script タグ中の _("変換対象文字列") はパースされません。
+  これを対象にするには、nokogiri gem を導入した上で
+  rake に `gettext_js_target=all` パラメータを渡してください。
+-->
+<script>
+/*
+  span id="ID001" タグに挿入する翻訳対象メッセージ
+$("#ID001").text(_("messages in JavaScript."));
+*/
+document.getElementById("ID001").textContent = _("messages in JavaScript.");
+
+/*
+  Localeプルダウン変更時の処理
+*/
+document.getElementById("locale").addEventListener("change", function(ev) {
+  const new_url = Alone.make_uri({ action: "change_locale",
+                                   locale: ev.target.value });
+  console.log( new_url );
+  window.location.replace( new_url );
+  //window.location.href = new_url;
+});
+</script>
 
 <%= footer_section %>
