@@ -302,19 +302,20 @@ end
 #
 # (note)
 #  parameter: gettext_js_target=TARGET
-#     TARGET: "all"  .js, .rhtml, .html  (default)
-#             "js"   .js
+#     TARGET: "js"   .js  (default)
+#             "all"  .js, .rhtml, .html  (Requires nokogiri gems)
 #
 desc "Create JS tanslation message file from .js and <script> in (r)html files."
 task :gettext_js do
   case ENV["gettext_js_target"]
-  when nil, "all"
+  when "js", nil
+    files = FileList["#{GETTEXT_SRC_HTDOCS}/**/*.js"]
+
+  when "all"
     files = FileList["#{GETTEXT_SRC_HTDOCS}/**/*.js",
                      "#{GETTEXT_SRC_HTDOCS}/**/*.html",
                      "#{GETTEXT_SRC_CTRL}/**/*.rhtml",
                      "#{GETTEXT_SRC_VIEW}/**/*.rhtml"]
-  when "js"
-    files = FileList["#{GETTEXT_SRC_HTDOCS}/**/*.js"]
   else
     puts "Error: Illegal parameter for gettext_js_target"
     exit
