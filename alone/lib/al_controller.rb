@@ -27,6 +27,8 @@ require 'al_session'
 #
 class AlController
 
+  include AlGetText  if defined?(AlGetText)
+
   # コントローラ名（メインモジュールの値のエイリアス）
   CTRL = Alone::ctrl
 
@@ -234,6 +236,34 @@ class AlController
       end
     end
     return r
+  end
+
+
+  ##
+  # ロケールの設定
+  #
+  #@param  [String]   locale_string  ロケール文字列。e.g. "ja_JP"
+  #@return [String]   設定されたロケール文字列
+  #
+  def init_locale( locale_string = nil )
+    if locale_string
+      @al_locale = locale_string.to_s
+      AlSession[:al_locale] = @al_locale
+
+    elsif AlSession[:al_locale]
+      @al_locale = AlSession[:al_locale]
+
+    elsif defined?(AL_DEFAULT_LOCALE)
+      @al_locale = AL_DEFAULT_LOCALE
+      AlSession[:al_locale] = @al_locale
+
+    else
+      @al_locale = ""
+      return @al_locale
+    end
+
+    set_locale( @al_locale )
+    return @al_locale
   end
 
 end

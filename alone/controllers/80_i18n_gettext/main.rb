@@ -19,20 +19,10 @@ require "al_form"
 class I18nTestController < AlController
 
   def initialize
-    #session.delete_all()
-
-    if AlSession[:locale]
-      @locale = AlSession[:locale]
-    elsif defined?(AL_DEFAULT_LOCALE)
-      @locale = AL_DEFAULT_LOCALE
-    else
-      @locale = ""
-    end
-    set_locale( @locale )
-
+    init_locale()
     @locale_sel = AlOptions.new("locale",
         :options=>{none:"----", en_US:"en_US", ja_JP:"ja_JP", de_DE:"de_DE"},
-        :value=>@locale )
+        :value=>@al_locale )
   end
 
   #
@@ -51,9 +41,10 @@ class I18nTestController < AlController
   def action_change_locale()
     @form = AlForm.new( @locale_sel );
     if @form.validate()
-      @locale = (@form.values[:locale] == "none") ? "" : @form.values[:locale]
-      AlSession[:locale] = @locale
-      set_locale( @locale )
+      locale_str = @form.values[:locale]
+      locale_str = ""  if locale_str == "none"
+
+      init_locale( locale_str )
     end
 
     action_index()

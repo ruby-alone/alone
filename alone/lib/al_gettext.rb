@@ -112,6 +112,3 @@ module AlGetText
   end
 
 end
-
-include AlGetText
-set_locale( AL_DEFAULT_LOCALE )  if defined?(AL_DEFAULT_LOCALE)
