@@ -78,8 +78,8 @@ AL_LOGIN_URI = "?ctrl=login"
 # Template Manager
 #
 # テンプレート保存場所へのパス。ドットはコントローラと同じディレクトリ。
-AL_TEMPLATE_DIR = '.'
-#AL_TEMPLATE_DIR = "#{AL_BASE_DIR}/views"
+#AL_TEMPLATE_DIR = '.'
+AL_TEMPLATE_DIR = "#{AL_BASE_DIR}/views"
 
 # テンプレートキャッシュを使う場合のディレクトリ。nilならキャッシュしない。
 AL_TEMPLATE_CACHE = nil
