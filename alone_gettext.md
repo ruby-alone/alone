@@ -49,7 +49,7 @@ require 'al_controller'
 
 ### Aloneライブラリ提供の翻訳ファイルのコピー（任意）
 
-Aloneライブラリは、標準で日本語(`ja_JP`)のみ翻訳ファイルを提供しており、その他のロケールの場合は、英語でエラーメッセージ等が表示される。これを多国語化したい場合は、以下の手順により各言語の翻訳ファイルを作る。
+Aloneライブラリは、標準で日本語(`ja_JP`)のみ翻訳ファイルを提供しており、その他のロケールの場合は、英語でエラーメッセージ等が表示される。これを多言語化したい場合は、以下の手順により各言語の翻訳ファイルを作る。
 ```sh
 rake gettext_copy_po locale=（ロケール名　例:de_DE）
 ```
@@ -251,7 +251,7 @@ Aloneライブラリメッセージの翻訳ファイルを生成する。
  * Aloneライブラリで、対象言語の翻訳が提供されている場合は、その .po をコピーし、
    提供がない場合は 空の .po ファイルを作る
 
-```
+```sh
 rake gettext_copy_po locale=ja_JP
 ```
 
@@ -269,7 +269,7 @@ rake gettext_copy_po locale=ja_JP
 
  * ユーザーコードの変更を行った時に実行する
 
-```
+```sh
 rake gettext_make_pot
 ```
 
@@ -290,7 +290,7 @@ rake gettext_make_pot
  * 既に翻訳ファイルが存在する場合は、既存.po ファイルと新.pot ファイルのメッセージを
    マージする
 
-```
+```sh
 rake gettext_make_po locale=ja_JP
 ```
 
@@ -306,7 +306,7 @@ rake gettext_make_po locale=ja_JP
 
  * userapp.po ファイルを作り直した場合に実行する
 
-```
+```sh
 rake gettext_make_mo locale=ja_JP
 ```
 
@@ -328,7 +328,7 @@ Aloneライブラリ全体をスキャンして、翻訳テンプレート alone
 
  * Aloneライブラリの変更を行った時に実行する
 
-```
+```sh
 rake gettext_make_alone_pot
 ```
 
@@ -345,7 +345,7 @@ Aloneライブラリのメッセージ翻訳ファイルを、言語別に生成
  * alone.pot ファイルを作り直した場合に実行する
  * 既に翻訳ファイルが存在する場合は、既存 .po ファイルと新 .pot ファイルのメッセージをマージする
 
-```
+```sh
 rake gettext_make_alone_po locale=ja_JP
 ```
 
@@ -361,7 +361,7 @@ Aloneライブラリのメッセージ翻訳ファイルを、言語別にコン
 
  * alone.po ファイルを作り直した場合に実行する
 
-```
+```sh
 rake gettext_make_alone_mo locale=ja_JP
 ```
 
