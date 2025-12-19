@@ -50,7 +50,6 @@ GETTEXT_SRC_HTDOCS = "htdocs"
 # Output directories.
 GETTEXT_LOCALE_DIR = "locale"
 GETTEXT_ALONE_LOCALE_DIR = "lib/locale"
-GETTEXT_JS_LOCALE_DIR = "htdocs/locale"
 
 
 ## temporary!
@@ -301,29 +300,37 @@ end
 #  (*.js,*.rhtml -> htdocs/locale/(ja_JP)/messages.js)
 #
 # (note)
-#  parameter: gettext_js_target=TARGET
+#  Specify target file type.
+#
+#    rake gettext_js_target=TARGET
 #     TARGET: "js"   .js  (default)
 #             "all"  .js, .rhtml, .html  (Requires nokogiri gems)
 #
+#  Specify htdocs directory.
+#
+#    rake gettext_htdocs=DIR
+#
 desc "Create JS tanslation message file from .js and <script> in (r)html files."
 task :gettext_js do
+  htdocs_dir = ENV["gettext_htdocs"] || GETTEXT_SRC_HTDOCS
+
   case ENV["gettext_js_target"]
   when "js", nil
-    files = FileList["#{GETTEXT_SRC_HTDOCS}/**/*.js"]
+    files = FileList["#{htdocs_dir}/**/*.js"]
 
   when "all"
-    files = FileList["#{GETTEXT_SRC_HTDOCS}/**/*.js",
-                     "#{GETTEXT_SRC_HTDOCS}/**/*.html",
+    files = FileList["#{htdocs_dir}/**/*.js",
+                     "#{htdocs_dir}/**/*.html",
                      "#{GETTEXT_SRC_CTRL}/**/*.rhtml",
                      "#{GETTEXT_SRC_VIEW}/**/*.rhtml"]
   else
     puts "Error: Illegal parameter for gettext_js_target"
     exit
   end
-  files.exclude(/htdocs\/locale\//)
+  files.exclude(/#{htdocs_dir}\/locale\//)
 
   locale = get_locale()
-  outdir = "#{GETTEXT_JS_LOCALE_DIR}/#{locale}"
+  outdir = "#{htdocs_dir}/locale/#{locale}"
   FileUtils.mkpath(outdir)
 
   outfile = "#{outdir}/messages.js"
