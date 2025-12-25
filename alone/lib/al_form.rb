@@ -1704,3 +1704,16 @@ class AlTime < AlTimestamp
   end
 
 end     # /AlTime
+
+
+##
+# p_ メソッドのwrapper.
+#
+if !respond_to?(:p_)
+  def p_(msgctxt, s)
+    require "al_gettext"
+    Object.include(AlGetText)
+    Object.remove_method :p_
+    super
+  end
+end

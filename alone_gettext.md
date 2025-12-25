@@ -40,12 +40,28 @@ htmlファイル内の `<script>` タグに含まれる JavaScript コードも�
 
 ### エントリーポイントの修正
 
-エントリーポイント（以下の例は `/htdocs/index.rb`）に、gettext ライブラリの使用を追加する。
+エントリーポイント（e.g. `/htdocs/index.rb`）へ、以下の例を参考に gettext ライブラリの使用を追加する。
+
+#### gem 版 gettext を追加する場合
 ```ruby
 require_relative '../al_config'
-require 'al_gettext'            # 追加
+
+# 追加
+require "gettext"
+include GetText
+bindtextdomain("messages", path: "#{AL_BASE_DIR}/locale", output_charset:"UTF-8")
+set_locale( AL_DEFAULT_LOCALE ) if defined?(AL_DEFAULT_LOCALE)
+
 require 'al_controller'
 ```
+
+#### Alone 版 gettext を追加する場合（使えるメソッドに制限あり）
+```ruby
+require_relative '../al_config'
+require 'al_gettext'; include AlGetText         # 追加
+require 'al_controller'
+```
+
 
 ### Aloneライブラリ提供の翻訳ファイルのコピー（任意）
 

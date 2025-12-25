@@ -12,7 +12,7 @@ module AlGetText
   @@trans_tables = {}
 
   #@return [String]  カレントロケール
-  @@current_locale = nil
+  @@current_locale = defined?(AL_DEFAULT_LOCALE) ? AL_DEFAULT_LOCALE : nil
 
   #@return [String]  ドメイン名
   @@domain_name = "messages"

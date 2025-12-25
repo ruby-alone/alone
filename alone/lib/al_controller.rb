@@ -27,8 +27,6 @@ require 'al_session'
 #
 class AlController
 
-  include AlGetText  if defined?(AlGetText)
-
   # コントローラ名（メインモジュールの値のエイリアス）
   CTRL = Alone::ctrl
 
@@ -252,10 +250,6 @@ class AlController
 
     elsif AlSession[:al_locale]
       @al_locale = AlSession[:al_locale]
-
-    elsif defined?(AL_DEFAULT_LOCALE)
-      @al_locale = AL_DEFAULT_LOCALE
-      AlSession[:al_locale] = @al_locale
 
     else
       @al_locale = ""

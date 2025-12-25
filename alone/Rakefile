@@ -88,7 +88,7 @@ end
 def get_locale()
   locale = ENV['locale']
   if !locale
-    puts "Error: Specify the variable locale. (e.g. rake gettext_make_mo locale=ja_JP)"
+    puts "Error: Specify the variable locale. (e.g. rake gettext locale=ja_JP)"
     exit
   end
 
@@ -126,7 +126,7 @@ task :gettext_make_alone_pot do
   next if target_is_newer(outfile, files)
 
   puts "\n===> Create alone.pot to #{outdir} dir."
-  sh "rxgettext #{files} --output=#{outfile}"
+  sh "rxgettext --no-wrap #{files} --output=#{outfile}"
   sh "sed -i '' -e '/POT-Creation-Date/d' -e '/PO-Revision-Date/d' #{outfile}"
 end
 
@@ -234,7 +234,7 @@ task :gettext_make_pot do
   next if target_is_newer(outfile, files)
 
   puts "\n===> Create userapp.pot to #{outdir} dir."
-  sh "rxgettext #{files} --output=#{outfile}"
+  sh "rxgettext --no-wrap #{files} --output=#{outfile}"
 end
 
 

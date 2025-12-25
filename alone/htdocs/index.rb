@@ -12,5 +12,5 @@
 #  puts "Content-Type: text/plain\r\n\r\nIt works!"; exit
 
 require_relative '../al_config'
-require 'al_gettext'
+require 'al_gettext'; include AlGetText         # see: alone_gettext.md
 require 'al_controller'

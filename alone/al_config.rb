@@ -95,21 +95,10 @@ AL_TEMPLATE_HEADER = %Q(<!DOCTYPE html>
 AL_TEMPLATE_BODY = %Q(</head>\n<body>\n)
 AL_TEMPLATE_FOOTER = %Q(</body>\n</html>\n)
 
-
 #
-# 以下TODO
+# Default locale
 #
-
-# デフォルトロケール
 AL_DEFAULT_LOCALE="ja_JP"
-
-
-if false
-  require "gettext"
-  include GetText
-  bindtextdomain("messages", path: "#{AL_BASE_DIR}/locale", output_charset:"UTF-8")
-  set_locale( AL_DEFAULT_LOCALE )
-end
 
 
 $LOAD_PATH << AL_LIB_DIR << AL_MODEL_DIR
