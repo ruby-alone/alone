@@ -1,8 +1,9 @@
-# coding: utf-8
+#
 # alone : application framework for embedded systems.
+#   Copyright (c) 2010 FAR END Technologies Corporation.
+#   Copyright (c) 2025 Hirohito Higashi All Rights Reserved.
 #
 # This file is destributed under BSD License. Please read the LICENSE file.
-#
 #
 
 Dir.chdir(File.dirname(__FILE__))
@@ -51,30 +52,23 @@ GETTEXT_SRC_HTDOCS = "htdocs"
 GETTEXT_LOCALE_DIR = "locale"
 GETTEXT_ALONE_LOCALE_DIR = "lib/locale"
 
-
-## temporary!
-task :default => [ :gettext ] do
-end
-
-
-
 ##
 # gettext workflows.
 #
-desc "A set of gettext workflows."
+desc "A set of gettext workflows"
 task :gettext => [
        :gettext_rb,
        :gettext_js ] do
 end
 
-desc "For ruby code: A set of gettext workflows."
+desc "For ruby code: A set of gettext workflows (.rb and .rhtml)"
 task :gettext_rb => [
        :gettext_make_pot,
        :gettext_make_po,
        :gettext_make_mo ] do
 end
 
-desc "For Alone library: A set of gettext workflows."
+# desc "For Alone library: A set of gettext workflows."
 task :gettext_alone => [
        :gettext_make_alone_pot,
        :gettext_make_alone_po,
@@ -220,7 +214,7 @@ end
 ##
 # For user programs;
 # Create the translation template.
-#  (*.rb -> userapp.pot)
+#  (*.rb, *.rhtml -> userapp.pot)
 #
 task :gettext_make_pot do
   outdir = GETTEXT_LOCALE_DIR
@@ -310,7 +304,7 @@ end
 #
 #    rake gettext_htdocs=DIR
 #
-desc "Create JS tanslation message file from .js and <script> in (r)html files."
+desc "For js code: A set of gettext workflows."
 task :gettext_js do
   htdocs_dir = ENV["gettext_htdocs"] || GETTEXT_SRC_HTDOCS
 
