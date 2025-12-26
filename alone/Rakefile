@@ -12,6 +12,11 @@ require "rbconfig"
 require_relative "./al_config"
 
 
+task :default do
+  sh "rake -T", verbose:false
+end
+
+
 ########################################
 # About locale
 ########################################
@@ -58,22 +63,19 @@ GETTEXT_ALONE_LOCALE_DIR = "lib/locale"
 desc "A set of gettext workflows"
 task :gettext => [
        :gettext_rb,
-       :gettext_js ] do
-end
+       :gettext_js ]
 
 desc "For ruby code: A set of gettext workflows (.rb and .rhtml)"
 task :gettext_rb => [
        :gettext_make_pot,
        :gettext_make_po,
-       :gettext_make_mo ] do
-end
+       :gettext_make_mo ]
 
 # desc "For Alone library: A set of gettext workflows."
 task :gettext_alone => [
        :gettext_make_alone_pot,
        :gettext_make_alone_po,
-       :gettext_make_alone_mo ] do
-end
+       :gettext_make_alone_mo ]
 
 
 ##
@@ -332,4 +334,33 @@ task :gettext_js do
 
   puts "\n===> Create (or update) #{outfile}"
   sh "lib/make_js_gettext.rb -v -o #{outfile} #{files}"
+end
+
+
+########################################
+# About YARD
+########################################
+
+YARD_OUTPUT_DIR = "htdocs/doc"
+
+##
+# Generate reference documentation
+#
+desc "Generate reference documents with YARD (gem install yard)."
+task :doc do
+  unless system("yardoc -o #{YARD_OUTPUT_DIR} lib/al_*.rb lib/al_form/*.rb")
+    STDERR.puts "ERROR: Failed to execute yardoc. (http://www.yardoc.org)"
+  end
+end
+
+
+##
+# Generate class tree
+#
+desc "Generate class tree in Graphviz '.dot' format."
+task :class_tree => [:doc] do
+  system("yard graph | sed 's/rankdir=BT/rankdir=RL/' > #{YARD_OUTPUT_DIR}/alone.dot")
+  unless system("dot -Tpng #{YARD_OUTPUT_DIR}/alone.dot > #{YARD_OUTPUT_DIR}/alone.png")
+    STDERR.puts "ERROR: Failed to execute graphviz."
+  end
 end

@@ -132,12 +132,12 @@ class AlRdbwMysql2 < AlRdbw
   #
   #@return [Array,Hash,Nil] 結果
   #@example
-  # res = @db.select( sql )
-  # p @db.fields
-  # while res
-  #   p res
-  #   res = db.select_next()
-  # end
+  #  res = db.select( sql )
+  #  p db.fields
+  #  while res
+  #    p res
+  #    res = db.select_next()
+  #  end
   #
   def select_next()
     return nil  if !@stmt
