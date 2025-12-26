@@ -62,3 +62,5 @@ build-iPhoneSimulator/
 ._*
 /alone/locale/
 /alone/htdocs/locale/
+/alone/htdocs/doc/
+.yardoc/
