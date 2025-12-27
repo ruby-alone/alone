@@ -1,16 +1,11 @@
 #
 # alone : application framework for embedded systems.
-#   Copyright (c) 2010 FAR END Technologies Corporation.
-#   Copyright (c) 2025 Hirohito Higashi All Rights Reserved.
+#   Copyright (c) 2025- Hirohito Higashi All Rights Reserved.
 #
 # This file is destributed under BSD License. Please read the LICENSE file.
 #
 
-Dir.chdir(File.dirname(__FILE__))
-
-require "rbconfig"
 require_relative "./al_config"
-
 
 task :default do
   sh "rake -T", verbose:false
