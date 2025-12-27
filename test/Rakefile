@@ -1,0 +1,26 @@
+#
+# alone : application framework for embedded systems.
+#   Copyright (c) 2010 FAR END Technologies Corporation.
+#   Copyright (c) 2025- Hirohito Higashi All Rights Reserved.
+#
+# This file is destributed under BSD License. Please read the LICENSE file.
+#
+
+task :default do
+  sh "rake -T", verbose:false
+end
+
+
+########################################
+# About unit test
+########################################
+
+##
+# for AlGraph Graph module
+#
+desc "Test: Graph module"
+task :test_graph do
+  Dir.glob("../test/graph/test_*.rb").each {|test|
+    require test
+  }
+end

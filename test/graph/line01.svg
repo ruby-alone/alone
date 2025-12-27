@@ -1,0 +1,76 @@
+<svg width="320px" height="240px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<rect width="320" height="240" stroke-width="1" stroke="black" fill="white" />
+<rect x="40" y="10" fill="#eee" width="270" height="210" />
+<clipPath id="plotarea">
+  <rect x="-5" y="-5" width="280" height="220" />
+</clipPath>
+<g transform="translate(40,10)">
+
+<!-- draw X-axis pass 1 -->
+<g stroke="#999999" stroke-width="1">
+  <line x1="0" y1="210" x2="0" y2="202" />
+  <line x1="45" y1="210" x2="45" y2="202" />
+  <line x1="90" y1="210" x2="90" y2="202" />
+  <line x1="135" y1="210" x2="135" y2="202" />
+  <line x1="180" y1="210" x2="180" y2="202" />
+  <line x1="225" y1="210" x2="225" y2="202" />
+  <line x1="270" y1="210" x2="270" y2="202" />
+</g>
+
+<!-- draw Y-axis pass 1 -->
+<g stroke="#999999" stroke-width="1">
+  <line x1="0" y1="210" x2="270" y2="210" />
+  <line x1="0" y1="180" x2="270" y2="180" />
+  <line x1="0" y1="150" x2="270" y2="150" />
+  <line x1="0" y1="120" x2="270" y2="120" />
+  <line x1="0" y1="90" x2="270" y2="90" />
+  <line x1="0" y1="60" x2="270" y2="60" />
+  <line x1="0" y1="30" x2="270" y2="30" />
+  <line x1="0" y1="0" x2="270" y2="0" />
+</g>
+
+<!-- draw X-axis pass 2 -->
+<line x1="0" y1="210" x2="270" y2="210" stroke="black" stroke-width="1" />
+<g font-size="10px" text-anchor="middle">
+  <text x="0" y="225">1</text>
+  <text x="45" y="225">2</text>
+  <text x="90" y="225">3</text>
+  <text x="135" y="225">4</text>
+  <text x="180" y="225">5</text>
+  <text x="225" y="225">6</text>
+  <text x="270" y="225">7</text>
+</g>
+
+<!-- draw Y-axis pass 2 -->
+<line x1="0" y1="0" x2="0" y2="210" stroke="black" stroke-width="1" />
+<g font-size="10px" text-anchor="end">
+  <text x="-5" y="215">0.0</text>
+  <text x="-5" y="185">1.0</text>
+  <text x="-5" y="155">2.0</text>
+  <text x="-5" y="125">3.0</text>
+  <text x="-5" y="95">4.0</text>
+  <text x="-5" y="65">5.0</text>
+  <text x="-5" y="35">6.0</text>
+  <text x="-5" y="5">7.0</text>
+</g>
+
+<!-- draw lines and bars in clipping path -->
+<g clip-path="url(#plotarea)">
+
+<!-- draw line-plot '' -->
+<polyline points="0,60 45,120 90,30 135,120 180,150 225,60 270,30 " stroke-width="2" fill="none" stroke="#004586" />
+<g stroke="black" stroke-width="2" fill="#004586">
+  <circle cx="0" cy="60" r="4" />
+  <circle cx="45" cy="120" r="4" />
+  <circle cx="90" cy="30" r="4" />
+  <circle cx="135" cy="120" r="4" />
+  <circle cx="180" cy="150" r="4" />
+  <circle cx="225" cy="60" r="4" />
+  <circle cx="270" cy="30" r="4" />
+</g>
+</g><!-- end of clip -->
+</g><!-- end of plot area -->
+
+
+</svg>

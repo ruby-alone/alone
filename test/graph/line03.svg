@@ -1,0 +1,125 @@
+<svg width="320px" height="240px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<rect width="320" height="240" stroke-width="1" stroke="black" fill="white" />
+<rect x="50" y="25" fill="#eee" width="190" height="180" />
+<clipPath id="plotarea">
+  <rect x="-5" y="-5" width="200" height="190" />
+</clipPath>
+<g transform="translate(50,25)">
+
+<!-- draw X-axis pass 1 -->
+<g stroke="#999999" stroke-width="1">
+  <line x1="0" y1="180" x2="0" y2="172" />
+  <line x1="27" y1="180" x2="27" y2="172" />
+  <line x1="54" y1="180" x2="54" y2="172" />
+  <line x1="81" y1="180" x2="81" y2="172" />
+  <line x1="108" y1="180" x2="108" y2="172" />
+  <line x1="135" y1="180" x2="135" y2="172" />
+  <line x1="162" y1="180" x2="162" y2="172" />
+  <line x1="190" y1="180" x2="190" y2="172" />
+</g>
+
+<!-- draw Y-axis pass 1 -->
+<g stroke="#999999" stroke-width="1">
+  <line x1="0" y1="180" x2="190" y2="180" />
+  <line x1="0" y1="158" x2="190" y2="158" />
+  <line x1="0" y1="135" x2="190" y2="135" />
+  <line x1="0" y1="113" x2="190" y2="113" />
+  <line x1="0" y1="90" x2="190" y2="90" />
+  <line x1="0" y1="68" x2="190" y2="68" />
+  <line x1="0" y1="45" x2="190" y2="45" />
+  <line x1="0" y1="23" x2="190" y2="23" />
+  <line x1="0" y1="0" x2="190" y2="0" />
+</g>
+
+<!-- draw X-axis pass 2 -->
+<line x1="0" y1="180" x2="190" y2="180" stroke="black" stroke-width="1" />
+<g font-size="10px" text-anchor="middle">
+  <text x="13" y="195">Jan</text>
+  <text x="40" y="195">Feb</text>
+  <text x="67" y="195">Mar</text>
+  <text x="95" y="195">Apr</text>
+  <text x="122" y="195">May</text>
+  <text x="149" y="195">Jun</text>
+  <text x="176" y="195">Jul</text>
+</g>
+
+<!-- draw Y-axis pass 2 -->
+<line x1="0" y1="0" x2="0" y2="180" stroke="black" stroke-width="1" />
+<g font-size="10px" text-anchor="end">
+  <text x="-5" y="185">0.0</text>
+  <text x="-5" y="163">2.0</text>
+  <text x="-5" y="140">4.0</text>
+  <text x="-5" y="118">6.0</text>
+  <text x="-5" y="95">8.0</text>
+  <text x="-5" y="73">10.0</text>
+  <text x="-5" y="50">12.0</text>
+  <text x="-5" y="28">14.0</text>
+  <text x="-5" y="5">16.0</text>
+</g>
+
+<!-- draw lines and bars in clipping path -->
+<g clip-path="url(#plotarea)">
+
+<!-- draw line-plot 'Bob' -->
+<polyline points="13,124 40,147 67,113 95,147 122,158 149,124 176,113 " stroke-width="2" fill="none" stroke="#004586" />
+<g stroke="black" stroke-width="2" fill="#004586">
+  <circle cx="13" cy="124" r="4" />
+  <circle cx="40" cy="147" r="4" />
+  <circle cx="67" cy="113" r="4" />
+  <circle cx="95" cy="147" r="4" />
+  <circle cx="122" cy="158" r="4" />
+  <circle cx="149" cy="124" r="4" />
+  <circle cx="176" cy="113" r="4" />
+</g>
+<g font-size="9px" text-anchor="middle">
+  <text x="13" y="118">5</text>
+  <text x="40" y="141">3</text>
+  <text x="67" y="107">6</text>
+  <text x="95" y="141">3</text>
+  <text x="122" y="152">2</text>
+  <text x="149" y="118">5</text>
+  <text x="176" y="107">6</text>
+</g>
+
+<!-- draw line-plot 'Alice' -->
+<polyline points="13,180 40,169 67,135 95,68 122,79 149,34 176,34 " stroke-width="2" fill="none" stroke="#ff420e" />
+<g stroke="black" stroke-width="2" fill="#ff420e">
+  <rect x="9" y="176" width="8" height="8" />
+  <rect x="36" y="165" width="8" height="8" />
+  <rect x="63" y="131" width="8" height="8" />
+  <rect x="91" y="64" width="8" height="8" />
+  <rect x="118" y="75" width="8" height="8" />
+  <rect x="145" y="30" width="8" height="8" />
+  <rect x="172" y="30" width="8" height="8" />
+</g>
+<g font-size="9px" text-anchor="middle">
+  <text x="13" y="174">0</text>
+  <text x="40" y="163">1</text>
+  <text x="67" y="129">4</text>
+  <text x="95" y="62">10</text>
+  <text x="122" y="73">9</text>
+  <text x="149" y="28">13</text>
+  <text x="176" y="28">13</text>
+</g>
+</g><!-- end of clip -->
+</g><!-- end of plot area -->
+
+
+<!-- draw legends -->
+<g>
+  <text x="270" font-size="10px" y="116">Bob</text>
+  <line x1="251" y1="112" x2="269" y2="112" stroke-width="2" fill="none" stroke="#004586"/>
+  <circle cx="260" cy="112" r="4" stroke="black" stroke-width="2" fill="#004586"/>
+</g>
+<g>
+  <text x="270" font-size="10px" y="130">Alice</text>
+  <line x1="251" y1="126" x2="269" y2="126" stroke-width="2" fill="none" stroke="#ff420e"/>
+  <rect x="256" y="122" width="8" height="8" stroke="black" stroke-width="2" fill="#ff420e"/>
+</g>
+
+<text font-size="12px" text-anchor="middle" x="145" y="235">X-Axis title</text>
+<text font-size="12px" text-anchor="middle" x="17" y="115" transform="rotate(-90,17,115)">Y-Axis title</text>
+<text y="20" font-size="16px" text-anchor="middle" x="160">Main title</text>
+
+</svg>

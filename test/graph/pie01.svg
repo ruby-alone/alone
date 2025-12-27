@@ -1,0 +1,46 @@
+<svg width="320px" height="240px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<rect width="320" height="240" stroke-width="1" stroke="black" fill="white" />
+<rect x="10" y="10" fill="#fff" width="230" height="220" />
+
+<!-- draw pie chart -->
+<path d="M0,0 L0.000000,-100.000000 A100,100 0 0,1 86.602540,-50.000000 Z" transform="translate(125,120)" stroke-width="1" stroke="black" fill="#004586" />
+<path d="M0,0 L86.602540,-50.000000 A100,100 0 0,1 99.452190,10.452846 Z" transform="translate(125,120)" stroke-width="1" stroke="black" fill="#ff420e" />
+<path d="M0,0 L99.452190,10.452846 A100,100 0 0,1 20.791169,97.814760 Z" transform="translate(125,120)" stroke-width="1" stroke="black" fill="#ffd320" />
+<path d="M0,0 L20.791169,97.814760 A100,100 0 0,1 -40.673664,91.354546 Z" transform="translate(125,120)" stroke-width="1" stroke="black" fill="#579d1c" />
+<path d="M0,0 L-40.673664,91.354546 A100,100 0 0,1 -74.314483,66.913061 Z" transform="translate(125,120)" stroke-width="1" stroke="black" fill="#7e0021" />
+<path d="M0,0 L-74.314483,66.913061 A100,100 0 0,1 -95.105652,-30.901699 Z" transform="translate(125,120)" stroke-width="1" stroke="black" fill="#83caff" />
+<path d="M0,0 L-95.105652,-30.901699 A100,100 0 0,1 -0.000000,-100.000000 Z" transform="translate(125,120)" stroke-width="1" stroke="black" fill="#314004" />
+
+<!-- draw legends -->
+<g>
+  <text x="270" font-size="10px" y="81">Jan</text>
+  <rect x="255" y="71" width="10" height="10" stroke="black" stroke-width="1" fill="#004586" />
+</g>
+<g>
+  <text x="270" font-size="10px" y="95">Feb</text>
+  <rect x="255" y="85" width="10" height="10" stroke="black" stroke-width="1" fill="#ff420e" />
+</g>
+<g>
+  <text x="270" font-size="10px" y="109">Mar</text>
+  <rect x="255" y="99" width="10" height="10" stroke="black" stroke-width="1" fill="#ffd320" />
+</g>
+<g>
+  <text x="270" font-size="10px" y="123">Apr</text>
+  <rect x="255" y="113" width="10" height="10" stroke="black" stroke-width="1" fill="#579d1c" />
+</g>
+<g>
+  <text x="270" font-size="10px" y="137">May</text>
+  <rect x="255" y="127" width="10" height="10" stroke="black" stroke-width="1" fill="#7e0021" />
+</g>
+<g>
+  <text x="270" font-size="10px" y="151">Jun</text>
+  <rect x="255" y="141" width="10" height="10" stroke="black" stroke-width="1" fill="#83caff" />
+</g>
+<g>
+  <text x="270" font-size="10px" y="165">Jul</text>
+  <rect x="255" y="155" width="10" height="10" stroke="black" stroke-width="1" fill="#314004" />
+</g>
+
+
+</svg>

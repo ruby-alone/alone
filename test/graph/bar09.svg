@@ -1,0 +1,116 @@
+<svg width="320px" height="240px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<rect width="320" height="240" stroke-width="1" stroke="black" fill="white" />
+<rect x="40" y="10" fill="#eee" width="200" height="210" />
+<clipPath id="plotarea">
+  <rect x="-5" y="-5" width="210" height="220" />
+</clipPath>
+<g transform="translate(40,10)">
+
+<!-- draw X-axis pass 1 -->
+<g stroke="#999999" stroke-width="1">
+  <line x1="0" y1="210" x2="0" y2="202" />
+  <line x1="40" y1="210" x2="40" y2="202" />
+  <line x1="80" y1="210" x2="80" y2="202" />
+  <line x1="120" y1="210" x2="120" y2="202" />
+  <line x1="160" y1="210" x2="160" y2="202" />
+  <line x1="200" y1="210" x2="200" y2="202" />
+</g>
+
+<!-- draw Y-axis pass 1 -->
+<g stroke="#999999" stroke-width="1">
+  <line x1="0" y1="210" x2="200" y2="210" />
+  <line x1="0" y1="191" x2="200" y2="191" />
+  <line x1="0" y1="172" x2="200" y2="172" />
+  <line x1="0" y1="153" x2="200" y2="153" />
+  <line x1="0" y1="134" x2="200" y2="134" />
+  <line x1="0" y1="115" x2="200" y2="115" />
+  <line x1="0" y1="96" x2="200" y2="96" />
+  <line x1="0" y1="77" x2="200" y2="77" />
+  <line x1="0" y1="58" x2="200" y2="58" />
+  <line x1="0" y1="39" x2="200" y2="39" />
+  <line x1="0" y1="20" x2="200" y2="20" />
+  <line x1="0" y1="0" x2="200" y2="0" />
+</g>
+
+<!-- draw X-axis pass 2 -->
+<line x1="0" y1="210" x2="200" y2="210" stroke="black" stroke-width="1" />
+<g font-size="10px" text-anchor="middle">
+  <text x="20" y="225">1</text>
+  <text x="60" y="225">2</text>
+  <text x="100" y="225">3</text>
+  <text x="140" y="225">4</text>
+  <text x="180" y="225">5</text>
+</g>
+
+<!-- draw Y-axis pass 2 -->
+<line x1="0" y1="0" x2="0" y2="210" stroke="black" stroke-width="1" />
+<g font-size="10px" text-anchor="end">
+  <text x="-5" y="215">0.0</text>
+  <text x="-5" y="196">1.0</text>
+  <text x="-5" y="177">2.0</text>
+  <text x="-5" y="158">3.0</text>
+  <text x="-5" y="139">4.0</text>
+  <text x="-5" y="120">5.0</text>
+  <text x="-5" y="101">6.0</text>
+  <text x="-5" y="82">7.0</text>
+  <text x="-5" y="63">8.0</text>
+  <text x="-5" y="44">9.0</text>
+  <text x="-5" y="25">10.0</text>
+  <text x="-5" y="5">11.0</text>
+</g>
+
+<!-- draw lines and bars in clipping path -->
+<g clip-path="url(#plotarea)">
+
+<!-- draw bar-plot 'bar4' -->
+<g stroke-width="1" stroke="black" fill="#579d1c">
+  <polyline points="10.00,39.00 10.00,20.00 30.00,20.00 30.00,39.00" />
+  <polyline points="50.00,58.00 50.00,20.00 70.00,20.00 70.00,58.00" />
+  <polyline points="90.00,39.00 90.00,20.00 110.00,20.00 110.00,39.00" />
+  <polyline points="130.00,58.00 130.00,20.00 150.00,20.00 150.00,58.00" />
+</g>
+
+<!-- draw bar-plot 'bar3' -->
+<g stroke-width="1" stroke="black" fill="#ffd320">
+  <polyline points="10.00,172.00 10.00,39.00 30.00,39.00 30.00,172.00" />
+  <polyline points="90.00,134.00 90.00,39.00 110.00,39.00 110.00,134.00" />
+  <polyline points="130.00,210.00 130.00,58.00 150.00,58.00 150.00,210.00" />
+  <polyline points="170.00,210.00 170.00,20.00 190.00,20.00 190.00,210.00" />
+</g>
+
+<!-- draw bar-plot 'bar2' -->
+<g stroke-width="1" stroke="black" fill="#ff420e">
+  <polyline points="50.00,115.00 50.00,58.00 70.00,58.00 70.00,115.00" />
+</g>
+
+<!-- draw bar-plot 'bar1' -->
+<g stroke-width="1" stroke="black" fill="#004586">
+  <polyline points="10.00,210.00 10.00,172.00 30.00,172.00 30.00,210.00" />
+  <polyline points="50.00,210.00 50.00,115.00 70.00,115.00 70.00,210.00" />
+  <polyline points="90.00,210.00 90.00,134.00 110.00,134.00 110.00,210.00" />
+</g>
+</g><!-- end of clip -->
+</g><!-- end of plot area -->
+
+
+<!-- draw legends -->
+<g>
+  <text x="270" font-size="10px" y="102">bar4</text>
+  <rect x="257" y="95" width="8" height="8" stroke-width="1" stroke="black" fill="#579d1c"/>
+</g>
+<g>
+  <text x="270" font-size="10px" y="116">bar3</text>
+  <rect x="257" y="109" width="8" height="8" stroke-width="1" stroke="black" fill="#ffd320"/>
+</g>
+<g>
+  <text x="270" font-size="10px" y="130">bar2</text>
+  <rect x="257" y="123" width="8" height="8" stroke-width="1" stroke="black" fill="#ff420e"/>
+</g>
+<g>
+  <text x="270" font-size="10px" y="144">bar1</text>
+  <rect x="257" y="137" width="8" height="8" stroke-width="1" stroke="black" fill="#004586"/>
+</g>
+
+
+</svg>

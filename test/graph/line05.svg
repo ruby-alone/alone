@@ -1,0 +1,126 @@
+<svg width="320px" height="240px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<rect width="320" height="240" stroke-width="1" stroke="black" fill="white" />
+<rect x="40" y="10" fill="#eee" width="180" height="210" />
+<clipPath id="plotarea">
+  <rect x="-5" y="-5" width="190" height="220" />
+</clipPath>
+<g transform="translate(40,10)">
+
+<!-- draw X-axis pass 1 -->
+<g stroke="#999999" stroke-width="1">
+  <line x1="0" y1="210" x2="0" y2="202" />
+  <line x1="30" y1="210" x2="30" y2="202" />
+  <line x1="60" y1="210" x2="60" y2="202" />
+  <line x1="90" y1="210" x2="90" y2="202" />
+  <line x1="120" y1="210" x2="120" y2="202" />
+  <line x1="150" y1="210" x2="150" y2="202" />
+  <line x1="180" y1="210" x2="180" y2="202" />
+</g>
+
+<!-- draw Y-axis pass 1 -->
+<g stroke="#999999" stroke-width="1">
+  <line x1="0" y1="210" x2="8" y2="210" />
+  <line x1="0" y1="180" x2="8" y2="180" />
+  <line x1="0" y1="150" x2="8" y2="150" />
+  <line x1="0" y1="120" x2="8" y2="120" />
+  <line x1="0" y1="90" x2="8" y2="90" />
+  <line x1="0" y1="60" x2="8" y2="60" />
+  <line x1="0" y1="30" x2="8" y2="30" />
+  <line x1="0" y1="0" x2="8" y2="0" />
+</g>
+
+<!-- draw Y2-axis pass 1 -->
+<g stroke="#999999" stroke-width="1">
+  <line x1="180" y1="210" x2="172" y2="210" />
+  <line x1="180" y1="180" x2="172" y2="180" />
+  <line x1="180" y1="150" x2="172" y2="150" />
+  <line x1="180" y1="120" x2="172" y2="120" />
+  <line x1="180" y1="90" x2="172" y2="90" />
+  <line x1="180" y1="60" x2="172" y2="60" />
+  <line x1="180" y1="30" x2="172" y2="30" />
+  <line x1="180" y1="0" x2="172" y2="0" />
+</g>
+
+<!-- draw X-axis pass 2 -->
+<line x1="0" y1="210" x2="180" y2="210" stroke="black" stroke-width="1" />
+<g font-size="10px" text-anchor="middle">
+  <text x="0" y="225">1</text>
+  <text x="30" y="225">2</text>
+  <text x="60" y="225">3</text>
+  <text x="90" y="225">4</text>
+  <text x="120" y="225">5</text>
+  <text x="150" y="225">6</text>
+  <text x="180" y="225">7</text>
+</g>
+
+<!-- draw Y-axis pass 2 -->
+<line x1="0" y1="0" x2="0" y2="210" stroke="black" stroke-width="1" />
+<g font-size="10px" text-anchor="end">
+  <text x="-5" y="215">0.0</text>
+  <text x="-5" y="185">1.0</text>
+  <text x="-5" y="155">2.0</text>
+  <text x="-5" y="125">3.0</text>
+  <text x="-5" y="95">4.0</text>
+  <text x="-5" y="65">5.0</text>
+  <text x="-5" y="35">6.0</text>
+  <text x="-5" y="5">7.0</text>
+</g>
+
+<!-- draw Y2-axis pass 2 -->
+<line x1="180" y1="0" x2="180" y2="210" stroke="black" stroke-width="1" />
+<g font-size="10px" text-anchor="start">
+  <text x="185" y="215">20.0</text>
+  <text x="185" y="185">21.0</text>
+  <text x="185" y="155">22.0</text>
+  <text x="185" y="125">23.0</text>
+  <text x="185" y="95">24.0</text>
+  <text x="185" y="65">25.0</text>
+  <text x="185" y="35">26.0</text>
+  <text x="185" y="5">27.0</text>
+</g>
+
+<!-- draw lines and bars in clipping path -->
+<g clip-path="url(#plotarea)">
+
+<!-- draw line-plot 'on Y1' -->
+<polyline points="0,60 30,120 60,30 90,120 120,150 150,60 180,30 " stroke-width="2" fill="none" stroke="#004586" />
+<g stroke="black" stroke-width="2" fill="#004586">
+  <circle cx="0" cy="60" r="4" />
+  <circle cx="30" cy="120" r="4" />
+  <circle cx="60" cy="30" r="4" />
+  <circle cx="90" cy="120" r="4" />
+  <circle cx="120" cy="150" r="4" />
+  <circle cx="150" cy="60" r="4" />
+  <circle cx="180" cy="30" r="4" />
+</g>
+
+<!-- draw line-plot 'on Y2' -->
+<polyline points="0,135 30,66 60,27 90,51 120,90 150,105 180,192 " stroke-width="2" fill="none" stroke="#ff420e" />
+<g stroke="black" stroke-width="2" fill="#ff420e">
+  <rect x="-4" y="131" width="8" height="8" />
+  <rect x="26" y="62" width="8" height="8" />
+  <rect x="56" y="23" width="8" height="8" />
+  <rect x="86" y="47" width="8" height="8" />
+  <rect x="116" y="86" width="8" height="8" />
+  <rect x="146" y="101" width="8" height="8" />
+  <rect x="176" y="188" width="8" height="8" />
+</g>
+</g><!-- end of clip -->
+</g><!-- end of plot area -->
+
+
+<!-- draw legends -->
+<g>
+  <text x="270" font-size="10px" y="116">on Y1</text>
+  <line x1="251" y1="112" x2="269" y2="112" stroke-width="2" fill="none" stroke="#004586"/>
+  <circle cx="260" cy="112" r="4" stroke="black" stroke-width="2" fill="#004586"/>
+</g>
+<g>
+  <text x="270" font-size="10px" y="130">on Y2</text>
+  <line x1="251" y1="126" x2="269" y2="126" stroke-width="2" fill="none" stroke="#ff420e"/>
+  <rect x="256" y="122" width="8" height="8" stroke="black" stroke-width="2" fill="#ff420e"/>
+</g>
+
+
+</svg>

@@ -1,0 +1,99 @@
+<svg width="320px" height="240px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<rect width="320" height="240" stroke-width="1" stroke="black" fill="white" />
+<rect x="40" y="10" fill="#eee" width="200" height="210" />
+<clipPath id="plotarea">
+  <rect x="-5" y="-5" width="210" height="220" />
+</clipPath>
+<g transform="translate(40,10)">
+
+<!-- draw X-axis pass 1 -->
+<g stroke="#999999" stroke-width="1">
+  <line x1="0" y1="210" x2="0" y2="202" />
+  <line x1="28" y1="210" x2="28" y2="202" />
+  <line x1="57" y1="210" x2="57" y2="202" />
+  <line x1="85" y1="210" x2="85" y2="202" />
+  <line x1="114" y1="210" x2="114" y2="202" />
+  <line x1="142" y1="210" x2="142" y2="202" />
+  <line x1="171" y1="210" x2="171" y2="202" />
+  <line x1="200" y1="210" x2="200" y2="202" />
+</g>
+
+<!-- draw Y-axis pass 1 -->
+<g stroke="#999999" stroke-width="1">
+  <line x1="0" y1="210" x2="200" y2="210" />
+  <line x1="0" y1="184" x2="200" y2="184" />
+  <line x1="0" y1="158" x2="200" y2="158" />
+  <line x1="0" y1="132" x2="200" y2="132" />
+  <line x1="0" y1="105" x2="200" y2="105" />
+  <line x1="0" y1="79" x2="200" y2="79" />
+  <line x1="0" y1="53" x2="200" y2="53" />
+  <line x1="0" y1="27" x2="200" y2="27" />
+  <line x1="0" y1="0" x2="200" y2="0" />
+</g>
+
+<!-- draw X-axis pass 2 -->
+<line x1="0" y1="210" x2="200" y2="210" stroke="black" stroke-width="1" />
+<g font-size="10px" text-anchor="middle">
+  <text x="14" y="225">1</text>
+  <text x="42" y="225">2</text>
+  <text x="71" y="225">3</text>
+  <text x="100" y="225">4</text>
+  <text x="128" y="225">5</text>
+  <text x="157" y="225">6</text>
+  <text x="185" y="225">7</text>
+</g>
+
+<!-- draw Y-axis pass 2 -->
+<line x1="0" y1="0" x2="0" y2="210" stroke="black" stroke-width="1" />
+<g font-size="10px" text-anchor="end">
+  <text x="-5" y="215">0.0</text>
+  <text x="-5" y="189">2.0</text>
+  <text x="-5" y="163">4.0</text>
+  <text x="-5" y="137">6.0</text>
+  <text x="-5" y="110">8.0</text>
+  <text x="-5" y="84">10.0</text>
+  <text x="-5" y="58">12.0</text>
+  <text x="-5" y="32">14.0</text>
+  <text x="-5" y="5">16.0</text>
+</g>
+
+<!-- draw lines and bars in clipping path -->
+<g clip-path="url(#plotarea)">
+
+<!-- draw bar-plot 'bar1' -->
+<g stroke-width="1" stroke="black" fill="#004586">
+  <polyline points="4.67,210.00 4.67,145.00 14.00,145.00 14.00,210.00" />
+  <polyline points="32.67,210.00 32.67,171.00 42.00,171.00 42.00,210.00" />
+  <polyline points="61.67,210.00 61.67,132.00 71.00,132.00 71.00,210.00" />
+  <polyline points="90.67,210.00 90.67,171.00 100.00,171.00 100.00,210.00" />
+  <polyline points="118.67,210.00 118.67,184.00 128.00,184.00 128.00,210.00" />
+  <polyline points="147.67,210.00 147.67,145.00 157.00,145.00 157.00,210.00" />
+  <polyline points="175.67,210.00 175.67,132.00 185.00,132.00 185.00,210.00" />
+</g>
+
+<!-- draw bar-plot 'bar2' -->
+<g stroke-width="1" stroke="black" fill="#ff420e">
+  <polyline points="42.00,210.00 42.00,197.00 51.33,197.00 51.33,210.00" />
+  <polyline points="71.00,210.00 71.00,158.00 80.33,158.00 80.33,210.00" />
+  <polyline points="100.00,210.00 100.00,79.00 109.33,79.00 109.33,210.00" />
+  <polyline points="128.00,210.00 128.00,92.00 137.33,92.00 137.33,210.00" />
+  <polyline points="157.00,210.00 157.00,40.00 166.33,40.00 166.33,210.00" />
+  <polyline points="185.00,210.00 185.00,171.00 194.33,171.00 194.33,210.00" />
+</g>
+</g><!-- end of clip -->
+</g><!-- end of plot area -->
+
+
+<!-- draw legends -->
+<g>
+  <text x="270" font-size="10px" y="116">bar1</text>
+  <rect x="257" y="109" width="8" height="8" stroke-width="1" stroke="black" fill="#004586"/>
+</g>
+<g>
+  <text x="270" font-size="10px" y="130">bar2</text>
+  <rect x="257" y="123" width="8" height="8" stroke-width="1" stroke="black" fill="#ff420e"/>
+</g>
+
+
+</svg>

@@ -1,0 +1,113 @@
+<svg width="800px" height="600px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<rect width="800" height="600" stroke-width="1" stroke="black" fill="white" />
+<rect x="50" y="10" fill="#eee" width="670" height="555" />
+<clipPath id="plotarea">
+  <rect x="-5" y="-5" width="680" height="565" />
+</clipPath>
+<g transform="translate(50,10)">
+
+<!-- draw X-axis pass 1 -->
+<g stroke="#999999" stroke-width="1">
+  <line x1="0" y1="555" x2="0" y2="0" />
+  <line x1="74" y1="555" x2="74" y2="0" />
+  <line x1="148" y1="555" x2="148" y2="0" />
+  <line x1="223" y1="555" x2="223" y2="0" />
+  <line x1="297" y1="555" x2="297" y2="0" />
+  <line x1="372" y1="555" x2="372" y2="0" />
+  <line x1="446" y1="555" x2="446" y2="0" />
+  <line x1="521" y1="555" x2="521" y2="0" />
+  <line x1="595" y1="555" x2="595" y2="0" />
+  <line x1="670" y1="555" x2="670" y2="0" />
+</g>
+
+<!-- draw Y-axis pass 1 -->
+<g stroke="#999999" stroke-width="1">
+  <line x1="0" y1="347" x2="670" y2="347" />
+  <line x1="0" y1="278" x2="670" y2="278" />
+  <line x1="0" y1="209" x2="670" y2="209" />
+  <line x1="0" y1="139" x2="670" y2="139" />
+  <line x1="0" y1="70" x2="670" y2="70" />
+  <line x1="0" y1="0" x2="670" y2="0" />
+  <line x1="0" y1="417" x2="670" y2="417" />
+  <line x1="0" y1="486" x2="670" y2="486" />
+  <line x1="0" y1="555" x2="670" y2="555" />
+</g>
+
+<!-- draw X-axis pass 2 -->
+<line x1="0" y1="555" x2="670" y2="555" stroke="black" stroke-width="1" />
+<g font-size="10px" text-anchor="middle">
+  <text x="0" y="570">0%</text>
+  <text x="74" y="570">10%</text>
+  <text x="148" y="570">20%</text>
+  <text x="223" y="570">30%</text>
+  <text x="297" y="570">40%</text>
+  <text x="372" y="570">50%</text>
+  <text x="446" y="570">60%</text>
+  <text x="521" y="570">70%</text>
+  <text x="595" y="570">80%</text>
+  <text x="670" y="570">90%</text>
+</g>
+
+<!-- draw Y-axis pass 2 -->
+<line x1="0" y1="0" x2="0" y2="555" stroke="black" stroke-width="1" />
+<g font-size="10px" text-anchor="end">
+  <text x="-5" y="352">0%</text>
+  <text x="-5" y="283">5%</text>
+  <text x="-5" y="214">10%</text>
+  <text x="-5" y="144">15%</text>
+  <text x="-5" y="75">20%</text>
+  <text x="-5" y="5">25%</text>
+  <text x="-5" y="422">-5%</text>
+  <text x="-5" y="491">-10%</text>
+  <text x="-5" y="560">-15%</text>
+</g>
+
+<!-- draw lines and bars in clipping path -->
+<g clip-path="url(#plotarea)">
+
+<!-- draw line-plot '男性' -->
+<g stroke="black" stroke-width="2" fill="#88f">
+  <circle cx="171" cy="403" r="50" stroke-width="3" stroke="#fff"/>
+  <circle cx="178" cy="278" r="40" stroke-width="3" stroke="#fff"/>
+  <circle cx="461" cy="181" r="90" stroke-width="3" stroke="#fff"/>
+  <circle cx="67" cy="486" r="20" stroke-width="3" stroke="#fff"/>
+</g>
+<g font-size="20px" text-anchor="middle">
+  <text x="171" y="413">農林</text>
+  <text x="178" y="288">製造</text>
+  <text x="461" y="191">建築土木</text>
+  <text x="67" y="496">その他</text>
+</g>
+
+<!-- draw line-plot '女性' -->
+<g stroke="black" stroke-width="2" fill="#f88">
+  <circle cx="290" cy="347" r="40" stroke-width="3" stroke="#fff"/>
+  <circle cx="148" cy="209" r="50" stroke-width="3" stroke="#fff"/>
+  <circle cx="37" cy="542" r="10" stroke-width="3" stroke="#fff"/>
+  <circle cx="632" cy="431" r="40" stroke-width="3" stroke="#fff"/>
+</g>
+<g font-size="20px" text-anchor="middle">
+  <text x="290" y="357">農林</text>
+  <text x="148" y="219">製造</text>
+  <text x="37" y="552">建築土木</text>
+  <text x="632" y="441">その他</text>
+</g>
+</g><!-- end of clip -->
+</g><!-- end of plot area -->
+
+
+<!-- draw legends -->
+<g>
+  <text x="750" font-size="10px" y="296">男性</text>
+    <circle cx="740" cy="292" r="4" stroke="black" stroke-width="2" fill="#88f"/>
+</g>
+<g>
+  <text x="750" font-size="10px" y="310">女性</text>
+    <circle cx="740" cy="306" r="4" stroke="black" stroke-width="2" fill="#f88"/>
+</g>
+
+<text font-size="12px" text-anchor="middle" x="385" y="595">X軸タイトル</text>
+<text font-size="12px" text-anchor="middle" x="17" y="287" transform="rotate(-90,17,287)">Y軸タイトル</text>
+
+</svg>
