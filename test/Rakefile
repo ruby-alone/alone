@@ -6,13 +6,21 @@
 # This file is destributed under BSD License. Please read the LICENSE file.
 #
 
+require 'rbconfig'
+
+RUBYPATH = File.join(RbConfig::CONFIG['bindir'], RbConfig::CONFIG['ruby_install_name']) + RbConfig::CONFIG['EXEEXT']
+AL_CONF_DIR = File.expand_path( File.dirname(__FILE__) + "/../alone" )
+
+$LOAD_PATH << AL_CONF_DIR
+
+
 task :default do
-  sh "rake -T", verbose:false
+#  sh "rake -T", verbose:false
 end
 
 
 ########################################
-# About unit test
+# About AlGraph
 ########################################
 
 ##
@@ -20,7 +28,61 @@ end
 #
 desc "Test: Graph module"
 task :test_graph do
-  Dir.glob("../test/graph/test_*.rb").each {|test|
-    require test
+  Dir.glob("graph/test_*.rb").each {|test|
+    require_relative test
   }
 end
+
+
+########################################
+# About database
+# (接続情報の保存機能テストのため、ファイルを一つずつテスト)
+########################################
+
+##
+# RDB wrapper 複数使用のテストをすべて実行する。
+#
+desc "Test: RDB wrapper/combination"
+task :test_combination do
+  Dir.glob("rdbw/combination/test_*.rb").each {|test|
+    exit if system( RUBYPATH, "-I#{AL_CONF_DIR}", test ) == false
+  }
+end
+
+##
+# PostgreSQL 関連のテストをすべて実行する。
+#
+desc "Test: RDB wrapper/PostgreSQL"
+task :test_postgres do
+  Dir.glob("rdbw/postgres/test_*.rb").each {|test|
+    exit if system( RUBYPATH, "-I#{AL_CONF_DIR}", test ) == false
+  }
+end
+
+##
+# Mysql2 関連のテストをすべて実行する。
+#
+desc "Test: RDB wrapper/Mysql2"
+task :test_mysql2 do
+  Dir.glob("rdbw/mysql2/test_*.rb").each {|test|
+    exit if system( RUBYPATH, "-I#{AL_CONF_DIR}", test ) == false
+  }
+end
+
+##
+# SQLite 関連のテストをすべて実行する。
+#
+desc "Test: RDB wrapper/SQLite"
+task :test_sqlite do
+  Dir.glob("rdbw/sqlite/test_*.rb").each {|test|
+    exit if system( RUBYPATH, "-I#{AL_CONF_DIR}", test ) == false
+  }
+end
+
+task :test_all => [
+       :test_graph,
+       :test_combination,
+       :test_postgres,
+       :test_mysql2,
+       :test_sqlite,
+     ]

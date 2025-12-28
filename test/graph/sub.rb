@@ -8,7 +8,7 @@
 
 require "test/unit"
 
-require_relative "../../alone/al_config.rb"
+require "al_config"
 require "al_main"
 
 
