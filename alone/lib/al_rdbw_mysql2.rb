@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
-# -*- coding: utf-8 -*-
+#
 # alone : application framework for embedded systems.
-#          Copyright (c) 2019 Hirohito Higashi All Rights Reserved.
+#   Copyright (c) 2019-2025 Hirohito Higashi All Rights Reserved.
 #
 # This file is destributed under BSD License. Please read the LICENSE file.
 #
@@ -14,9 +14,9 @@ require "al_rdbw"
 ##
 # リレーショナルデータベースラッパー MySQL2版
 #
-class AlRdbwMysql2 < AlRdbw
+class AlRdbw::Mysql2 < AlRdbw
 
-  Mysql2::Client.default_query_options[:symbolize_keys] = true
+  ::Mysql2::Client.default_query_options[:symbolize_keys] = true
 
 
   ##
@@ -25,7 +25,7 @@ class AlRdbwMysql2 < AlRdbw
   def open_connection()
     return false  if ! @dsn
 
-    @handle = Mysql2::Client.new(@dsn)
+    @handle = ::Mysql2::Client.new(@dsn)
     @dsn = nil
   end
 
@@ -43,7 +43,7 @@ class AlRdbwMysql2 < AlRdbw
     # MySQLでは、"lock tables" 等は、query()でしか実行できない。
     begin
       stmt = get_handle().prepare( sql )
-    rescue Mysql2::Error => ex
+    rescue ::Mysql2::Error => ex
       raise ex  if ex.errno != 1295 # ER_UNSUPPORTED_PS
       raise ex  if ! values.empty?
       get_handle().query( sql )

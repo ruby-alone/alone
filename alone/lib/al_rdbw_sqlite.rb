@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
-# -*- coding: utf-8 -*-
+#
 # alone : application framework for embedded systems.
-#          Copyright (c) 2009-2010 Inas Co Ltd. All Rights Reserved.
-#          Copyright (c) 2018-2019 Hirohito Higashi All Rights Reserved.
+#   Copyright (c) 2009-2010 Inas Co Ltd. All Rights Reserved.
+#   Copyright (c) 2018-2025 Hirohito Higashi All Rights Reserved.
 #
 # This file is destributed under BSD License. Please read the LICENSE file.
 #
@@ -15,7 +15,7 @@ require 'al_rdbw'
 ##
 # リレーショナルデータベースラッパー SQLite版
 #
-class AlRdbwSqlite < AlRdbw
+class AlRdbw::Sqlite < AlRdbw
 
   ##
   # RDBとのコネクションを開始する

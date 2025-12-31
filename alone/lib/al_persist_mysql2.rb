@@ -22,14 +22,14 @@ class AlPersistMysql2 < AlPersistRDB
   #@return [AlRdbw]     RDB wrapper オブジェクト
   #
   def self.connect( dsn = nil )
-    return AlRdbwMysql2.connect( dsn )
+    return AlRdbw::Mysql2.connect( dsn )
   end
 
 end
 
 
 
-class AlRdbwMysql2
+class AlRdbw::Mysql2
   # DB wrapperクラスへメソッド追加する
 
   ##

@@ -23,14 +23,14 @@ class AlPersistPostgres < AlPersistRDB
   #@return [AlRdbw]     RDB wrapper オブジェクト
   #
   def self.connect( dsn = nil )
-    return AlRdbwPostgres.connect( dsn )
+    return AlRdbw::Postgres.connect( dsn )
   end
 
 end
 
 
 
-class AlRdbwPostgres
+class AlRdbw::Postgres
   # DB wrapperクラスへメソッド追加する
 
   ##

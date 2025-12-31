@@ -23,14 +23,14 @@ class AlPersistSqlite < AlPersistRDB
   #@return [AlRdbw]     RDB wrapper オブジェクト
   #
   def self.connect( dsn = nil )
-    return AlRdbwSqlite.connect( dsn )
+    return AlRdbw::Sqlite.connect( dsn )
   end
 
 end
 
 
 
-class AlRdbwSqlite
+class AlRdbw::Sqlite
   # DB wrapperクラスへメソッド追加する
 
   ##
