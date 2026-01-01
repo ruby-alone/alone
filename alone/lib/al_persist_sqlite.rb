@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
-# -*- coding: utf-8 -*-
+#
 # alone : application framework for embedded systems.
-#          Copyright (c) 2009-2010 Inas Co Ltd. All Rights Reserved.
-#          Copyright (c) 2018 Hirohito Higashi All Rights Reserved.
+#   Copyright (c) 2009-2010 Inas Co Ltd. All Rights Reserved.
+#   Copyright (c) 2018-2025 Hirohito Higashi All Rights Reserved.
 #
 # This file is destributed under BSD License. Please read the LICENSE file.
 #
@@ -14,7 +14,7 @@ require 'al_rdbw_sqlite'
 ##
 # データ永続化 SQLite3版
 #
-class AlPersistSqlite < AlPersistRDB
+class AlPersist::Sqlite < AlPersist::RDB
 
   ##
   # RDBサーバとのコネクションをオープンする
@@ -36,22 +36,22 @@ class AlRdbw::Sqlite
   ##
   # tableを指定して、Persistオブジェクトを生成
   #
-  #@param  [String]  tname            テーブル名
+  #@param  [String]  tname              テーブル名
   #@param  [Array<String,Symbol>,String,Symbol]  pkey   プライマリキー
-  #@return [AlPersistSqlite]          データ永続化オブジェクト
+  #@return [AlPersist::Sqlite]          データ永続化オブジェクト
   #
   def table( tname, pkey = nil )
-    return AlPersistSqlite.new( self, tname, pkey )
+    return AlPersist::Sqlite.new( self, tname, pkey )
   end
 
 
   ##
   # tableを指定して、Persistオブジェクトを生成 syntax sugar
-  #@param  [String]  tname            テーブル名
-  #@return [AlPersistSqlite]          データ永続化オブジェクト
+  #@param  [String]  tname              テーブル名
+  #@return [AlPersist::Sqlite]          データ永続化オブジェクト
   #
   def []( tname )
-    return AlPersistSqlite.new( self, tname )
+    return AlPersist::Sqlite.new( self, tname )
   end
 
 end

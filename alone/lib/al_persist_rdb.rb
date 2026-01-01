@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
-# -*- coding: utf-8 -*-
+#
 # alone : application framework for embedded systems.
-#          Copyright (c) 2009-2010 Inas Co Ltd. All Rights Reserved.
-#          Copyright (c) 2018 Hirohito Higashi All Rights Reserved.
+#   Copyright (c) 2009-2010 Inas Co Ltd. All Rights Reserved.
+#   Copyright (c) 2018-2022 Hirohito Higashi All Rights Reserved.
 #
 # This file is destributed under BSD License. Please read the LICENSE file.
 #
@@ -13,7 +13,7 @@ require 'al_persist'
 ##
 # データ永続化 RDB共通クラス
 #
-class AlPersistRDB < AlPersist
+class AlPersist::RDB < AlPersist
 
   #@return [String]  テーブル名
   attr_reader :table

@@ -31,7 +31,7 @@ class TodoFileController < AlController
     )
 
     # use file
-    @persist = AlPersistFile.connect( DB_FILE )
+    @persist = AlPersist::File.connect( DB_FILE )
   end
 
 

@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
-# -*- coding: utf-8 -*-
+#
 # alone : application framework for embedded systems.
-#          Copyright (c) 2009-2010 Inas Co Ltd. All Rights Reserved.
-#          Copyright (c) 2018 Hirohito Higashi All Rights Reserved.
+#   Copyright (c) 2009-2010 Inas Co Ltd. All Rights Reserved.
+#   Copyright (c) 2018-2025 Hirohito Higashi All Rights Reserved.
 #
 # This file is destributed under BSD License. Please read the LICENSE file.
 #
@@ -20,13 +20,13 @@ require 'al_persist'
 # 識別のため、プライマリキーとして:idが自動的に付与される。
 # 検索は使えない。並べ替えは使えない。
 #
-class AlPersistFile < AlPersist
+class AlPersist::File < AlPersist
 
   ##
   # ファクトリ
   #
   #@param [String] dsn          ファイル名
-  #@return [AlPersistFile]      オブジェクト
+  #@return [AlPersist::File]    オブジェクト
   #
   def self.connect( dsn = nil )
     return self.new( dsn )
@@ -64,7 +64,7 @@ class AlPersistFile < AlPersist
     ret = false
     begin
       file = open( @filename, 'r' )
-      file.flock( File::LOCK_SH )
+      file.flock( ::File::LOCK_SH )
 
       while (keys = file.gets) && (datas = file.gets)
         if keys == id
@@ -95,8 +95,8 @@ class AlPersistFile < AlPersist
   def create( values = nil )
     @values = values  if values
 
-    file = open( @filename, File::RDWR|File::CREAT )
-    file.flock( File::LOCK_EX )
+    file = open( @filename, ::File::RDWR|::File::CREAT )
+    file.flock( ::File::LOCK_EX )
 
     id = ""
     while (keys = file.gets) && (datas = file.gets)
@@ -127,8 +127,8 @@ class AlPersistFile < AlPersist
 
     ret = false
     file = open( @filename, 'r' )
-    file.flock( File::LOCK_SH )
-    fout = Tempfile.new( "al-temp", File.dirname(@filename) )
+    file.flock( ::File::LOCK_SH )
+    fout = Tempfile.new( "al-temp", ::File.dirname(@filename) )
     while (keys = file.gets) && (datas = file.gets)
       if keys == id
         @values = Marshal.load( Alone::decode_uri_component( datas ) ).merge( @values )
@@ -141,7 +141,7 @@ class AlPersistFile < AlPersist
       end
     end
     file.close()
-    File.rename( fout.path, @filename )
+    ::File.rename( fout.path, @filename )
     fout.close()
 
     return ret
@@ -164,8 +164,8 @@ class AlPersistFile < AlPersist
 
     ret = false
     file = open( @filename, 'r' )
-    file.flock( File::LOCK_SH )
-    fout = Tempfile.new( "al-temp", File.dirname(@filename) )
+    file.flock( ::File::LOCK_SH )
+    fout = Tempfile.new( "al-temp", ::File.dirname(@filename) )
     while (keys = file.gets) && (datas = file.gets)
       if keys == id
         ret = true
@@ -175,7 +175,7 @@ class AlPersistFile < AlPersist
       end
     end
     file.close()
-    File.rename( fout.path, @filename )
+    ::File.rename( fout.path, @filename )
     fout.close()
 
     return ret
@@ -201,8 +201,8 @@ class AlPersistFile < AlPersist
     ret = false
     new_id = ""
     file = open( @filename, 'r' )
-    file.flock( File::LOCK_SH )
-    fout = Tempfile.new( "al-temp", File.dirname(@filename) )
+    file.flock( ::File::LOCK_SH )
+    fout = Tempfile.new( "al-temp", ::File.dirname(@filename) )
     while (keys = file.gets) && (datas = file.gets)
       new_id = keys
       fout.write( keys )
@@ -223,7 +223,7 @@ class AlPersistFile < AlPersist
     end
 
     file.close()
-    File.rename( fout.path, @filename )
+    ::File.rename( fout.path, @filename )
     fout.close()
 
     return ret
@@ -277,7 +277,7 @@ class AlPersistFile < AlPersist
     ret = []
     begin
       file = open( @filename, 'r' )
-      file.flock( File::LOCK_SH )
+      file.flock( ::File::LOCK_SH )
       while (keys = file.gets) && (datas = file.gets)
         total_rows += 1
 

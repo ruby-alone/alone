@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
-# -*- coding: utf-8 -*-
+#
 # alone : application framework for embedded systems.
-#          Copyright (c) 2009-2010 Inas Co Ltd. All Rights Reserved.
-#          Copyright (c) 2018 Hirohito Higashi All Rights Reserved.
+#   Copyright (c) 2009-2010 Inas Co Ltd. All Rights Reserved.
+#   Copyright (c) 2018-2025 Hirohito Higashi All Rights Reserved.
 #
 # This file is destributed under BSD License. Please read the LICENSE file.
 #
@@ -21,7 +21,7 @@ require 'al_persist'
 # このクラスでは、イメージ的にはRDBでいうところの
 # 横持ち構造になっていて、1行のみデータが存在する。
 #
-class AlPersistSh < AlPersist
+class AlPersist::Sh < AlPersist
 
   REX_DATA = /\A\s*(\w+)=["'](.*)["']/
 
@@ -29,7 +29,7 @@ class AlPersistSh < AlPersist
   # ファクトリ
   #
   #@param [String] dsn          ファイル名
-  #@return [AlPersistSh]        オブジェクト
+  #@return [AlPersist::Sh]      オブジェクト
   #
   def self.connect( dsn = nil )
     return self.new( dsn )

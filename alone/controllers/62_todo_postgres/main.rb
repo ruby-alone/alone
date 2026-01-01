@@ -29,7 +29,7 @@ class TodoPostgresController < AlController
     )
 
     # use postgresql
-    @db = AlPersistPostgres.connect( DSN )
+    @db = AlPersist::Postgres.connect( DSN )
     @persist = @db.table("todo", :id )
   end
 

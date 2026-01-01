@@ -28,7 +28,7 @@ class TodoMysqlController < AlController
     )
 
     # use mysql
-    @db = AlPersistMysql2.connect( DSN )
+    @db = AlPersist::Mysql2.connect( DSN )
     @persist = @db.table("todo", :id )
   end
 
