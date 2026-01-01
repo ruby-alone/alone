@@ -15,7 +15,7 @@ require_relative "../param"
 
 ##
 # RDB wrapper test for PostgreSQL version
-# AlRdbwPostgresクラスのテスト。
+# AlRdbw::Postgresクラスのテスト。
 #
 class AlRdbwPostgresTest < Test::Unit::TestCase
 
@@ -35,7 +35,7 @@ class AlRdbwPostgresTest < Test::Unit::TestCase
   #
   def test_connect1()
     @db1 = AlRdbw.connect( DSN )
-    assert_equal( @db1.class, AlRdbwPostgres )
+    assert_equal( @db1.class, AlRdbw::Postgres )
   end
 
 
@@ -48,7 +48,7 @@ class AlRdbwPostgresTest < Test::Unit::TestCase
     @db2 = AlRdbw.connect( DSN )
     assert_equal( @db1, @db2 )
 
-    @db3 = AlRdbwPostgres.connect( DSN )
+    @db3 = AlRdbw::Postgres.connect( DSN )
     assert_equal( @db1, @db3 )
   end
 
@@ -60,7 +60,7 @@ class AlRdbwPostgresTest < Test::Unit::TestCase
     @db2 = AlRdbw.connect()
     assert_equal( @db1, @db2 )
 
-    @db3 = AlRdbwPostgres.connect( DSN )
+    @db3 = AlRdbw::Postgres.connect( DSN )
     assert_equal( @db1, @db3 )
   end
 

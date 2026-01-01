@@ -15,7 +15,7 @@ require_relative "../param"
 
 ##
 # RDB wrapper test for MySQL2 version.
-# AlRdbwMysql2クラスのテスト。
+# AlRdbw::Mysql2クラスのテスト。
 #
 class AlRdbwMysql2Test < Test::Unit::TestCase
 
@@ -35,7 +35,7 @@ class AlRdbwMysql2Test < Test::Unit::TestCase
   #
   def test_connect1()
     @db1 = AlRdbw.connect( DSN )
-    assert_equal( @db1.class, AlRdbwMysql2 )
+    assert_equal( @db1.class, AlRdbw::Mysql2 )
   end
 
 
@@ -48,7 +48,7 @@ class AlRdbwMysql2Test < Test::Unit::TestCase
     @db2 = AlRdbw.connect( DSN )
     assert_equal( @db1, @db2 )
 
-    @db3 = AlRdbwMysql2.connect( DSN )
+    @db3 = AlRdbw::Mysql2.connect( DSN )
     assert_equal( @db1, @db3 )
   end
 
@@ -60,7 +60,7 @@ class AlRdbwMysql2Test < Test::Unit::TestCase
     @db2 = AlRdbw.connect()
     assert_equal( @db1, @db2 )
 
-    @db3 = AlRdbwMysql2.connect( DSN )
+    @db3 = AlRdbw::Mysql2.connect( DSN )
     assert_equal( @db1, @db3 )
   end
 

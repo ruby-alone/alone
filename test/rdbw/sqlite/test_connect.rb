@@ -15,7 +15,7 @@ require_relative "../param"
 
 ##
 # RDB wrapper test for SQLite version.
-# AlRdbwSqliteクラスのテスト。
+# AlRdbw::Sqliteクラスのテスト。
 #
 class AlRdbwSqliteTest < Test::Unit::TestCase
 
@@ -35,7 +35,7 @@ class AlRdbwSqliteTest < Test::Unit::TestCase
   #
   def test_connect1()
     @db1 = AlRdbw.connect( DSN )
-    assert_equal( @db1.class, AlRdbwSqlite )
+    assert_equal( @db1.class, AlRdbw::Sqlite )
   end
 
 
@@ -48,7 +48,7 @@ class AlRdbwSqliteTest < Test::Unit::TestCase
     @db2 = AlRdbw.connect( DSN )
     assert_equal( @db1, @db2 )
 
-    @db3 = AlRdbwSqlite.connect( DSN )
+    @db3 = AlRdbw::Sqlite.connect( DSN )
     assert_equal( @db1, @db3 )
   end
 
@@ -60,7 +60,7 @@ class AlRdbwSqliteTest < Test::Unit::TestCase
     @db2 = AlRdbw.connect()
     assert_equal( @db1, @db2 )
 
-    @db3 = AlRdbwSqlite.connect()
+    @db3 = AlRdbw::Sqlite.connect()
     assert_equal( @db1, @db3 )
   end
 

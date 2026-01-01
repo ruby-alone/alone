@@ -23,8 +23,8 @@ class AlRdbwTest < Test::Unit::TestCase
   #
   def setup()
     File.delete( AlRdbwSqliteTest::DSN ) rescue 0
-    @db1 = AlRdbwSqlite.connect( AlRdbwSqliteTest::DSN )
-    @db2 = AlRdbwPostgres.connect( AlRdbwPostgresTest::DSN )
+    @db1 = AlRdbw::Sqlite.connect( AlRdbwSqliteTest::DSN )
+    @db2 = AlRdbw::Postgres.connect( AlRdbwPostgresTest::DSN )
   end
 
 
@@ -44,8 +44,8 @@ class AlRdbwTest < Test::Unit::TestCase
   def test_connect1()
     assert_not_equal( @db1, @db2 )
 
-    assert_equal( AlRdbwSqlite, @db1.class )
-    assert_equal( AlRdbwPostgres, @db2.class )
+    assert_equal( AlRdbw::Sqlite, @db1.class )
+    assert_equal( AlRdbw::Postgres, @db2.class )
   end
 
 
