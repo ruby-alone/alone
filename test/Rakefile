@@ -14,8 +14,8 @@ AL_CONF_DIR = File.expand_path( File.dirname(__FILE__) + "/../alone" )
 $LOAD_PATH << AL_CONF_DIR
 
 
-task :default do
-#  sh "rake -T", verbose:false
+task :default => [] do
+  sh "rake -T", verbose:false
 end
 
 
@@ -23,11 +23,8 @@ end
 # About AlGraph
 ########################################
 
-##
-# for AlGraph Graph module
-#
-desc "Test: Graph module"
-task :test_graph do
+desc "Testing the Graph module"
+task :graph do
   Dir.glob("graph/test_*.rb").each {|test|
     require_relative test
   }
@@ -42,8 +39,8 @@ end
 ##
 # RDB wrapper 複数使用のテストをすべて実行する。
 #
-desc "Test: RDB wrapper/combination"
-task :test_combination do
+desc "Testing the RDB wrapper combination test"
+task :rdbw_combination do
   Dir.glob("rdbw/combination/test_*.rb").each {|test|
     exit if system( RUBYPATH, "-I#{AL_CONF_DIR}", test ) == false
   }
@@ -52,8 +49,8 @@ end
 ##
 # PostgreSQL 関連のテストをすべて実行する。
 #
-desc "Test: RDB wrapper/PostgreSQL"
-task :test_postgres do
+desc "Testing the RDB wrapper (PostgreSQL based)"
+task :rdbw_postgres do
   Dir.glob("rdbw/postgres/test_*.rb").each {|test|
     exit if system( RUBYPATH, "-I#{AL_CONF_DIR}", test ) == false
   }
@@ -62,8 +59,8 @@ end
 ##
 # Mysql2 関連のテストをすべて実行する。
 #
-desc "Test: RDB wrapper/Mysql2"
-task :test_mysql2 do
+desc "Testing the RDB wrapper (MySQL based)"
+task :rdbw_mysql do
   Dir.glob("rdbw/mysql2/test_*.rb").each {|test|
     exit if system( RUBYPATH, "-I#{AL_CONF_DIR}", test ) == false
   }
@@ -72,17 +69,22 @@ end
 ##
 # SQLite 関連のテストをすべて実行する。
 #
-desc "Test: RDB wrapper/SQLite"
-task :test_sqlite do
+desc "Testing the RDB wrapper (SQLite based)"
+task :rdbw_sqlite do
   Dir.glob("rdbw/sqlite/test_*.rb").each {|test|
     exit if system( RUBYPATH, "-I#{AL_CONF_DIR}", test ) == false
   }
 end
 
-task :test_all => [
-       :test_graph,
-       :test_combination,
-       :test_postgres,
-       :test_mysql2,
-       :test_sqlite,
-     ]
+
+########################################
+# About AlPersist
+########################################
+
+##
+# for AlPersist::Sqlite
+#
+desc "Testing the DataPersist module (SQLite-based)"
+task :persist_sqlite do
+  require_relative "persist/test_sqlite.rb"
+end
