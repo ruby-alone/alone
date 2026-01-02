@@ -46,7 +46,7 @@ class AlPersist::RDB < AlPersist
   #
   def read( values = nil )
     @values = values  if values
-    @search_condition = {}
+    @search_condition.clear
     return false  if @values.empty?
 
     #
@@ -209,6 +209,7 @@ class AlPersist::RDB < AlPersist
   # :total_rowsが数値の時は、それを全件数の値として採用する。
   #
   def search( param = {} )
+    @search_condition.clear
     return search_common( param,
         "select #{@column} from #{@table} #{param[:where] ? '_WHERE_' : ''}",
         "select count(*) as numrows from #{@table} #{param[:where] ? '_WHERE_' : ''};" )
@@ -236,6 +237,7 @@ class AlPersist::RDB < AlPersist
   #     :total_rows=>total_rows )
   #
   def select( tuple, sql_part, param = {} )
+    @search_condition.clear
     return search_common( param,
                 "select #{tuple} #{sql_part}",
                 "select count(*) as numrows #{sql_part};" )
