@@ -307,3 +307,13 @@ class AlRdbw::Postgres < AlRdbw
   end
 
 end
+
+
+# for backward compatibility.
+#
+# @private
+module AlRdbwPostgres
+  def self.connect( dsn )
+    AlRdbw::Postgres.connect( dsn )
+  end
+end

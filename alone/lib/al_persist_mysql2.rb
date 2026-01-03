@@ -54,3 +54,13 @@ class AlRdbw::Mysql2
   end
 
 end
+
+
+# for backward compatibility.
+#
+# @private
+module AlPersistMysql2
+  def self.connect( dsn )
+    AlPersist::Mysql2.connect( dsn )
+  end
+end

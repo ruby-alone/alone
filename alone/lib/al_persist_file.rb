@@ -306,3 +306,13 @@ class AlPersist::File < AlPersist
   end
 
 end
+
+
+# for backward compatibility.
+#
+# @private
+module AlPersistFile
+  def self.connect( dsn )
+    AlPersist::File.connect( dsn )
+  end
+end

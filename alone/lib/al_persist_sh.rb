@@ -224,3 +224,13 @@ class AlPersist::Sh < AlPersist
   end
 
 end
+
+
+# for backward compatibility.
+#
+# @private
+module AlPersistSh
+  def self.connect( dsn )
+    AlPersist::Sh.connect( dsn )
+  end
+end

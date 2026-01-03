@@ -270,3 +270,13 @@ class AlRdbw::Mysql2 < AlRdbw
   end
 
 end
+
+
+# for backward compatibility.
+#
+# @private
+module AlRdbwMysql2
+  def self.connect( dsn )
+    AlRdbw::Mysql2.connect( dsn )
+  end
+end

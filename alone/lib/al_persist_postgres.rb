@@ -55,3 +55,13 @@ class AlRdbw::Postgres
   end
 
 end
+
+
+# for backward compatibility.
+#
+# @private
+module AlPersistPostgres
+  def self.connect( dsn )
+    AlPersist::Postgres.connect( dsn )
+  end
+end

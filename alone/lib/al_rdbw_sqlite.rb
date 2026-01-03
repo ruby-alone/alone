@@ -258,3 +258,13 @@ class AlRdbw::Sqlite < AlRdbw
   end
 
 end
+
+
+# for backward compatibility.
+#
+# @private
+module AlRdbwSqlite
+  def self.connect( dsn )
+    AlRdbw::Sqlite.connect( dsn )
+  end
+end
