@@ -10,6 +10,7 @@
 
 require 'sqlite3'
 require 'al_rdbw'
+require 'time'
 
 
 ##
@@ -92,10 +93,12 @@ class AlRdbw::Sqlite < AlRdbw
     ret = []
     case @select_data_type
     when :ARRAY         # Array<Array>で返す
-      @result.each {|row| ret << row }
+      @result.each {|row| ret << convert_type(row, @result.types) }
 
     else                # Array<Hash>で返す（標準）
-      @result.each {|row| ret << [@fields, row].transpose.to_h }
+      @result.each {|row|
+        ret << [@fields, convert_type(row, @result.types)].transpose.to_h
+      }
     end
     @result.close()
 
@@ -108,6 +111,7 @@ class AlRdbw::Sqlite < AlRdbw
   #
   #@return [Array,Hash,Nil] 結果
   #@example
+  #  db.select_fetch_mode = :ROW
   #  res = db.select( sql )
   #  p @db.fields
   #  while res
@@ -125,10 +129,10 @@ class AlRdbw::Sqlite < AlRdbw
 
     case @select_data_type
     when :ARRAY
-      return row
+      return convert_type(row, @result.types)
 
     else
-      return [@fields, row].transpose.to_h
+      return [@fields, convert_type(row, @result.types)].transpose.to_h
     end
   end
 
@@ -255,6 +259,30 @@ class AlRdbw::Sqlite < AlRdbw
     get_handle().execute( "rollback transaction;" )
     @flag_transaction = false
     return true
+  end
+
+
+  private
+  ##
+  # データ型変換
+  #
+  #@param  row   Array
+  #@param  types Array
+  #@return Array
+  #
+  def convert_type( row, types )
+    ret = []
+
+    types.each_with_index {|t,i|
+      case t
+      when "timestamp", "date", "time"
+        ret << Time.parse( row[i] )
+      else
+        ret << row[i]
+      end
+    }
+
+    return ret
   end
 
 end
