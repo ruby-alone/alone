@@ -1,6 +1,9 @@
 #!/usr/bin/env ruby
 #
 # alone : application framework for embedded systems.
+#   Copyright (c) 2009-2010 Inas Co Ltd. All Rights Reserved.
+#   Copyright (c) 2018-2025 Hirohito Higashi All Rights Reserved.
+#   Copyright (C) 2020-2022 Shimane IT Open-Innovation Center.
 #
 # This file is destributed under BSD License. Please read the LICENSE file.
 #
@@ -120,7 +123,7 @@ class Alone
     # display error page.
     send_http_headers()
     begin
-      print File.read( "#{AL_BASEDIR}/templates/#{status_code}.html" )
+      print File.read( "#{AL_LIB_DIR}/templates/#{status_code}.html" )
     rescue
       print status_message
     end

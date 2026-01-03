@@ -1,8 +1,7 @@
+#!/usr/bin/env ruby
 #
 # alone : application framework for embedded systems.
-#         Copyright (c) 2018-2021 Hirohito Higashi All Rights Reserved.
-#
-# This file is destributed under BSD License. Please read the LICENSE file.
+#   Copyright (c) 2025 Hirohito Higashi All Rights Reserved.
 #
 # gettext エミュレーション
 #
@@ -28,9 +27,9 @@ module AlGetText
     if @@path_mo
       file_path = "#{@@path_mo}/#{@@current_locale}/LC_MESSAGES/#{@@domain_name}.mo"
     else
-      file_path = "#{AL_BASEDIR}/../locale/#{@@current_locale}/LC_MESSAGES/#{@@domain_name}.mo"
+      file_path = "#{AL_BASE_DIR}/locale/#{@@current_locale}/LC_MESSAGES/#{@@domain_name}.mo"
       if !File.exist?(file_path)
-        file_path = "#{AL_BASEDIR}/locale/#{@@current_locale}/LC_MESSAGES/#{@@domain_name}.mo"
+        file_path = "#{AL_LIB_DIR}/locale/#{@@current_locale}/LC_MESSAGES/#{@@domain_name}.mo"
       end
     end
 
