@@ -1,7 +1,8 @@
 #!/usr/bin/env ruby
-# -*- coding: utf-8 -*-
+#
 # alone : application framework for embedded systems.
-#               Copyright (c) 2009-2010 Inas Co Ltd. All Rights Reserved.
+#   Copyright (c) 2009-2010 Inas Co Ltd. All Rights Reserved.
+#   Copyright (c) 2018-2025 Hirohito Higashi All Rights Reserved.
 #
 # This file is destributed under BSD License. Please read the LICENSE file.
 #
@@ -101,7 +102,7 @@ class AlController
     end
 
     # 表示開始
-    AlTemplate.run( @template_list || "#{AL_BASEDIR}/templates/list.rhtml" )
+    AlTemplate.run( @template_list || "#{AL_LIB_DIR}/templates/list.rhtml" )
   end
 
 
@@ -112,7 +113,7 @@ class AlController
     delete_foreign_widget()
     @form.action = Alone::make_uri( :action=>'create_submit' )
 
-    AlTemplate.run( @template_create || "#{AL_BASEDIR}/templates/form.rhtml" )
+    AlTemplate.run( @template_create || "#{AL_LIB_DIR}/templates/form.rhtml" )
   end
 
 
@@ -124,13 +125,13 @@ class AlController
 
     if ! @form.validate()
       # バリデーションエラーならフォームへ戻す
-      AlTemplate.run( @template_create || "#{AL_BASEDIR}/templates/form.rhtml" )
+      AlTemplate.run( @template_create || "#{AL_LIB_DIR}/templates/form.rhtml" )
       return
     end
 
     set_persist_values_from_form()
     @result = @persist.create()
-    AlTemplate.run( @template_create_submit || "#{AL_BASEDIR}/templates/form_submit.rhtml" )
+    AlTemplate.run( @template_create_submit || "#{AL_LIB_DIR}/templates/form_submit.rhtml" )
   end
 
 
@@ -150,7 +151,7 @@ class AlController
     @form.action = Alone::make_uri( :action=>'update_submit' )
 
     # 表示開始
-    AlTemplate.run( @template_update || "#{AL_BASEDIR}/templates/form.rhtml" )
+    AlTemplate.run( @template_update || "#{AL_LIB_DIR}/templates/form.rhtml" )
   end
 
 
@@ -160,13 +161,13 @@ class AlController
   def action_update_submit()
     if ! @form.validate()
       # バリデーションエラーならフォームへ戻す
-      AlTemplate.run( @template_update || "#{AL_BASEDIR}/templates/form.rhtml" )
+      AlTemplate.run( @template_update || "#{AL_LIB_DIR}/templates/form.rhtml" )
       return
     end
 
     set_persist_values_from_form()
     @result = @persist.update()
-    AlTemplate.run( @template_update_submit || "#{AL_BASEDIR}/templates/form_submit.rhtml" )
+    AlTemplate.run( @template_update_submit || "#{AL_LIB_DIR}/templates/form_submit.rhtml" )
   end
 
 
@@ -178,7 +179,7 @@ class AlController
     raise "Read error. #{@form.values}"  if ! @persist.read( @form.values )
     set_form_values_from_persist()
 
-    AlTemplate.run( @template_delete || "#{AL_BASEDIR}/templates/delete.rhtml" )
+    AlTemplate.run( @template_delete || "#{AL_LIB_DIR}/templates/delete.rhtml" )
   end
 
 
@@ -190,7 +191,7 @@ class AlController
 
     set_persist_values_from_form()
     @result = @persist.delete()
-    AlTemplate.run( @template_delete_submit || "#{AL_BASEDIR}/templates/delete_submit.rhtml" )
+    AlTemplate.run( @template_delete_submit || "#{AL_LIB_DIR}/templates/delete_submit.rhtml" )
   end
 
 
