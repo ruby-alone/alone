@@ -14,6 +14,8 @@
 #  AutoScaleError*
 #
 
+require "stringio"
+
 ##
 # AlGraphの各クラスのための名前空間
 #
