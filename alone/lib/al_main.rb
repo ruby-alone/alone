@@ -202,14 +202,14 @@ class Alone
     @@flag_send_http_headers = true
 
     flag_content_type = false
-    @@headers.each do |h|
-      puts h
-      flag_content_type = true  if h.start_with?( "Content-Type:" )
-    end
+    @@headers.each {|header|
+      print header, "\r\n"
+      flag_content_type = true  if header.start_with?( "Content-Type:" )
+    }
     if ! flag_content_type
-      print "Content-Type: text/html; charset=#{AL_CHARSET}\n"
+      print "Content-Type: text/html; charset=#{AL_CHARSET}\r\n"
     end
-    print "\n"
+    print "\r\n"
   end
 
 
