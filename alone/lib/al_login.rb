@@ -1,7 +1,9 @@
 #!/usr/bin/env ruby
-# -*- coding: utf-8 -*-
+#
 # alone : application framework for embedded systems.
-#               Copyright (c) 2009-2010 Inas Co Ltd. All Rights Reserved.
+#   Copyright (c) 2009-2010 Inas Co Ltd. All Rights Reserved.
+#   Copyright (c) 2018-2026 Hirohito Higashi All Rights Reserved.
+#   Copyright (C) 2020-2026 Shimane IT Open-Innovation Center.
 #
 # This file is destributed under BSD License. Please read the LICENSE file.
 #
@@ -15,10 +17,9 @@
 
 require 'al_session'
 
-
 ##
 # ログインチェック
-# 
+#
 # (note)
 # ログインしていなければ、ログインURIへリダイレクトする
 #
