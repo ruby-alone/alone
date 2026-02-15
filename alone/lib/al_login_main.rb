@@ -1,7 +1,9 @@
 #!/usr/bin/env ruby
-# -*- coding: utf-8 -*-
+#
 # alone : application framework for embedded systems.
-#               Copyright (c) 2009-2010 Inas Co Ltd. All Rights Reserved.
+#   Copyright (c) 2009-2010 Inas Co Ltd. All Rights Reserved.
+#   Copyright (c) 2018-2026 Hirohito Higashi All Rights Reserved.
+#   Copyright (C) 2020-2026 Shimane IT Open-Innovation Center.
 #
 # This file is destributed under BSD License. Please read the LICENSE file.
 #
@@ -36,9 +38,9 @@ class AlLogin
     @template_name = template_name || "./al_login.rhtml"
 
     @form = AlForm.new( [
-        AlText.new( 'user_id', :label=>'ユーザID',
+        AlText.new( 'user_id', :label=>p_("al", "User ID"),
                     :required=>true, :validator=>/^[\w_-]+$/ ),
-        AlText.new( 'password', :label=>'パスワード',
+        AlText.new( 'password', :label=>p_("al", "Password"),
                     :required=>true, :validator=>/^[\w_-]+$/ ),
       ] )
   end
@@ -139,4 +141,19 @@ class AlLogin
   def confirm()
     return false
   end
+
+
+  ##
+  # 翻訳ファイルのパスを返す
+  #
+  #@return [String]  翻訳ファイルのパス
+  #@example
+  #  htmlテンプレート中で以下のように使う
+  #  <script src="<%=s gettext_message_uri() %>"></script>
+  #
+  def gettext_message_uri()
+    @al_locale = $AlController.init_locale()  if !@al_locale
+    return "locale/#{@al_locale}/messages.js"
+  end
+
 end

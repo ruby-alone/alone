@@ -298,7 +298,7 @@ if ! defined? AL_CTRL_NOSTART
   begin
     # コントローラを初期化し、必要なユーザコードを読み込む
     Dir.chdir( File.join( AL_CTRL_DIR, AlController::CTRL ) )
-    require './main.rb'
+    require File.expand_path("./main.rb")
 
   rescue Exception => ex
     Alone::handle_error( ex )

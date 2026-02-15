@@ -101,7 +101,17 @@ msgctxt "al"
 msgid "Please specify %s."
 msgstr "%sを指定してください。"
 
-#: ../al_login_main.rb:97
+#: ../al_login_main.rb:40
+msgctxt "al"
+msgid "User ID"
+msgstr "ユーザーID"
+
+#: ../al_login_main.rb:42
+msgctxt "al"
+msgid "Password"
+msgstr "パスワード"
+
+#: ../al_login_main.rb:100
 msgctxt "al"
 msgid "Invalid User ID or password."
-msgstr "ユーザIDまたはパスワードが違います。"
+msgstr "ユーザーIDまたはパスワードが違います。"
