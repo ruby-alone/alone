@@ -61,7 +61,7 @@ httpd = WEBrick::HTTPServer.new(
 )
 
 #
-# 終了シグナルを補足したら、shutdownで終了させるためのハンドラを登録する。
+# 終了シグナルを捕捉したら、shutdownで終了させるためのハンドラを登録する。
 #
 Signal.trap( 'INT' ) { httpd.shutdown() }
 Signal.trap( 'TERM' ) { httpd.shutdown() }
