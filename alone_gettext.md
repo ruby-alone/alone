@@ -10,7 +10,7 @@
     - htmlの `<script>` タグに書かれた JavaScript
 
  * 技術的な制約により、Ruby と JavaScript は別々の翻訳作業が必要となる。
- * Ruby コードの翻訳は、gettext gem を使う。
+ * Ruby コードの翻訳は、`gettext gem` を使う。
  * JavaScriptコードの翻訳は、Aloneオリジナルのメッセージ抽出スクリプトを使う。
 
  * 翻訳作業時は、gettext gem を必要とする。加えて、htmlの `<script>` タグに
@@ -23,6 +23,13 @@
  * サンプルコード `controllers/80_i18n_gettext` があるので、そちらも参照
    すると良い。
 
+## サンプル
+
+controllers/80_i18n_gettext 以下に main.rb と index.rhtml があるので参照のこと。
+ローカルの al_server で動かしている場合は、以下のURLで実行できる。
+
+http://localhost:3000/index.rb?ctrl=80_i18n_gettext
+
 
 -------------------------------------------------------------------------------
 # 翻訳ワークフロー
@@ -31,8 +38,15 @@
 
 ### gem の導入
 
-`gettext` gems を導入する。
-htmlファイル内の `<script>` タグに含まれる JavaScript コードも対象にする場合は、`nokogiri` も併せて導入する。
+gem `gettext` を導入する。
+```
+gem install gettext
+```
+
+htmlファイル内の `<script>` タグに含まれる JavaScript コードも対象にする場合は、`nokogiri` も導入する。
+```
+gem install nokogiri
+```
 
  * https://rubygems.org/gems/gettext
  * https://rubygems.org/gems/nokogiri
@@ -117,7 +131,7 @@ msgstr "こんにちは、ルビー！"
 
 ### 4. Compile.
 
-以下の Rakeタスクでコンパイルする。
+再度 Rakeタスクでコンパイルする。
 ```sh
 rake gettext locale=ja_JP
 ```
@@ -155,7 +169,7 @@ const my_message = _("Hello, Ruby!");
 ```sh
 rake gettext locale=ja_JP
 
-# htmlファイル中の `<script>` タグも対象にしたい場合
+# rhtmlファイル中の <script>タグも対象にしたい場合は、以下のオプションを追加する
 rake gettext locale=ja_JP gettext_js_target=all
 ```
 
@@ -337,7 +351,7 @@ rake gettext_make_mo locale=ja_JP
 
 
 
-## Alone locale directory のメンテナンス（参考）
+## Alone locale directory のメンテナンス（Alone開発者用）
 
 ### gettext_make_alone_pot
 Aloneライブラリ全体をスキャンして、翻訳テンプレート alone.pot を生成する。
