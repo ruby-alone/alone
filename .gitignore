@@ -33,10 +33,10 @@ build-iPhoneSimulator/
 # vendor/Pods/
 
 ## Documentation cache and generated files:
-/.yardoc/
-/_yardoc/
-/doc/
-/rdoc/
+#/.yardoc/
+#/_yardoc/
+#/doc/
+#/rdoc/
 
 ## Environment normalization:
 /.bundle/
@@ -60,7 +60,9 @@ build-iPhoneSimulator/
 *.bak*
 .DS_Store
 ._*
-/alone/locale/
-/alone/htdocs/locale/
-/alone/htdocs/doc/
+#/alone/locale/
+#/alone/htdocs/locale/
+
+# yardoc
 .yardoc/
+/alone/htdocs/doc/
