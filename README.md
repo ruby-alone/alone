@@ -57,8 +57,8 @@ __Worker module__
 
 ## Reference
 
-Web page: [https://www.ruby-alone.org](https://www.ruby-alone.org)
-Documents: [https://www.ruby-alone.org/doc/](https://www.ruby-alone.org/doc/)
+* Web page: [https://www.ruby-alone.org](https://www.ruby-alone.org)
+* Documents: [https://www.ruby-alone.org/doc/](https://www.ruby-alone.org/doc/)
 
 
 ## Licence
